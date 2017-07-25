@@ -1,0 +1,319 @@
+@import "reset";
+
+html {
+	background-image: url(../img/background.jpg);
+}
+
+body * {
+	box-sizing: border-box;
+
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 12px;
+
+	color: #9ca0a5;
+}
+
+body {
+	$line-grid: rgba(255, 255, 255, 0.05) 3px, rgba(0, 0, 0, .15) 5px;
+	background: linear-gradient($line-grid) 0 0,
+    linear-gradient(90deg, $line-grid) 0 0;
+   	background-size: 4px 4px;
+}
+
+.main {
+	max-width: 960px;
+	margin: 0 auto;
+}
+
+.logo {
+	display: block;
+	padding-top: 50px;
+	padding-bottom: 45px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+@media (max-width: 600px) {
+	.logo {
+		padding-top: calc(50px / 2);
+		padding-bottom: calc(45px / 2);
+	}
+}
+
+@media (max-width: 400px) {
+	.logo {
+		padding-top: 5px;
+		padding-bottom: 5px;
+		margin-left: 0px;
+		margin-right: auto;
+	}
+}
+
+.banner {
+	img {
+		width: 100%;
+		height: auto;
+	}
+}
+
+.banner-shadow {
+    position: relative;
+
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3),
+    			0 0 40px rgba(0, 0, 0, 0.1) inset;
+
+    &:before,
+    &:after {
+	    position: absolute;
+    	content: "";
+	    z-index: -1;
+	    top: 50%;
+	    bottom: 0;
+	    left: 10px;
+	    right: 10px;
+
+	    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+	    border-radius: 100px / 10px;
+    }
+
+    &:after{
+    	right: 10px;
+    	left: auto;
+    	transform: skew(8deg) rotate(3deg);
+    }
+}
+
+.logout {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+    width: 88.541666666666666666666666666667%; //850 / 960
+    margin-top: 38px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (max-width: 600px) {
+	.logout {
+		flex-direction: column;
+		margin-top: calc(38px / 2);
+	}
+}
+
+@media (max-width: 400px) {
+	.logout {
+		margin-top: 5px;
+	}
+}
+
+$white: white;
+
+.logout-itm {
+	flex: 0 1 calc(50% - 70px);
+
+	&:nth-child(2) {
+		flex: 0 1 1px;
+	    position: relative;
+
+	    background: linear-gradient(
+	    	to bottom, 
+	    	rgba(255, 255, 255, 0) 0%, 
+	    	rgba(255, 255, 255, 0.05) 15%, 
+	    	rgba(255, 255, 255, 0.1) 50%, 
+	    	rgba(255, 255, 255, 0.05) 85%, 
+	    	rgba(255, 255, 255, 0) 100%
+	    	);
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ffffff', GradientType=0 );
+
+		&:before {
+		    position: absolute;
+		    content: "";
+		    top: 5%;
+		    right: -1px;
+
+		    height: 90%;
+		    width: 2px;
+
+		    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.28),
+		    			-1px 0 8px rgba(255, 255, 255, 0.1);
+		    border-radius: 3px / 300px;
+		}
+	}
+
+	h2 {
+		margin-bottom: 18px;
+
+		font-size: 48px;
+		font-family: 'PT Sans Narrow', sans-serif;
+		text-transform: lowercase;
+
+		color: $white;
+	}
+
+	img {
+		position: relative;
+    	left: 11px;
+    	bottom: 23px;
+	}
+
+	.form-footer-left-side {
+		display: flex;
+    	flex-direction: column;
+    	justify-content: space-between;
+	}
+
+	input[type="text"] {
+		width: 100%;
+		height: 38px;
+
+		text-indent: 37px;
+
+		background-color: #2d333c;
+		border-top: 1px solid rgba(255, 255, 255, 0.4);
+		border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+		border-left: 1px solid rgba(255, 255, 255, 0.4);
+		border-right: 1px solid rgba(255, 255, 255, 0.4);
+	}
+
+	input[type="submit"] {
+		height: 35px;
+    	width: 95px;
+    	align-self: flex-end;
+
+		color: $white;
+		border-top: 1px solid #333942;
+		border-bottom: 1px solid #333942;
+		border-left: 1px solid #333942;
+		border-right: 1px solid #333942;
+		box-shadow: inset 0 1px 1px 0px rgba(255, 255, 255, 0.5), 
+						  0px 2px 2px 0px rgba(0, 0, 0, 0.6); 
+
+		background: rgba(50,56,65,1);
+		background: linear-gradient(
+			to top, 
+			rgba(50,56,65,1) 0%, 
+			rgba(71,78,88,1) 100%
+			);
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#323841', endColorstr='#474e58', GradientType=0 );
+	}
+
+	form {
+		width: 86%;
+	}
+}
+
+@media (max-width: 600px) {
+	.logout-itm {
+		margin-bottom: 20px;
+		
+
+		&:nth-child(2) {
+			background: linear-gradient(
+				to right, 
+				rgba(255, 255, 255, 0) 0%, 
+				rgba(255, 255, 255, 0.05) 15%, 
+				rgba(255, 255, 255, 0.1) 50%, 
+				rgba(255, 255, 255, 0.05) 85%, 
+				rgba(255, 255, 255, 0) 100%
+				);
+
+			&:before {
+				height: 1px;
+		    	width: 90%;
+		    	right: 5%;
+
+		    	box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.28), 
+		    				0px -1px 8px rgba(255, 255, 255, 0.1);
+		    	border-radius: 300px / 1px;
+			}
+		}
+
+		:last-child {
+			margin-bottom: 0px;
+		}
+	}
+}
+
+.form-footer {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	margin-top: 5px;
+}
+
+.register,
+.login {
+	margin-top: 12px;
+}
+
+// http://html5.by/blog/placeholder/
+$grey: #656a71;
+::-webkit-input-placeholder {color:$grey;}
+::-moz-placeholder          {color:$grey;}/* Firefox 19+ */
+:-moz-placeholder           {color:$grey;}/* Firefox 18- */
+:-ms-input-placeholder      {color:$grey;}
+
+
+.footer {
+	display: block;
+    margin-top: 65px;
+    padding-bottom: 35px;
+
+	text-align: center;
+
+	color: #545f6e;
+}
+
+@media (max-width: 600px) {
+	.footer {
+		margin-top: calc(65px / 2);
+		padding-bottom: calc(35px / 2);
+	}
+}
+
+@media (max-width: 400px) {
+	.footer {
+		margin-top: 15px;
+		padding-bottom: 10px;
+	}
+}
+
+.fs11 {
+	font-size: 11px;
+}
+
+// ==================CHECKBOX===============
+// https://paulund.co.uk/playground/demo/css-style-checkboxes/
+.checkbox {
+    position: relative;
+}
+
+.checkbox input + label {
+    position: absolute;
+    top: 0;
+    left: 2px;
+
+    width: 16px;
+    height: 16px;
+
+    background: #2d333c;
+
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.checkbox input + label:after {
+    position: absolute;
+    content: '';
+    top: 3px;
+    left: 3px;
+
+    background: transparent;
+
+	opacity: 0;
+    border: 4px solid #ff84bc;
+}
+
+.checkbox input[type=checkbox]:checked + label:after {
+	opacity: 1;
+}
+// ==================END CHECKBOX===============
