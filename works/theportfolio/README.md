@@ -1,3 +1,3 @@
 # The Potfolio
 
-Use HTML%, CSS3
+Use HTML5, CSS3
