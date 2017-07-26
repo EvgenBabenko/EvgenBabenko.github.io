@@ -1,178 +1,77 @@
-@import "reset";
+@import reset
 
-html {
-    height: 100%;
+body * 
+	font-family: 'PT Sans', sans-serif
 
-    background-image: url(../img/bg.jpg);
-    background-position:  center center;
-    background-size: cover;
-}
+	box-sizing: border-box
+	transition: all 0.3s ease-in-out
 
-body * {
-    box-sizing: border-box;
+a
+	text-decoration: none
 
-    font-family: 'PT Sans', sans-serif;
-    font-size: 16px;
+	color: #337ab7
+	&:hover
+		text-decoration: underline
+		color: #23527c
 
-    color: white;
-}
+$padding: 5px
 
-body {
-    height: 100%;
+body
+	margin: $padding * 3
+	max-width: 960px
+	margin-left: auto
+	margin-right: auto
 
-    $color: rgba(0, 0, 0, 0.1);
-    $transparent: rgba(0, 0, 0, 0);
+.header
+	border: 1px solid grey
+	border-radius: $padding
 
-    background: linear-gradient(45deg,
-        $transparent 49.9%, 
-        $color 49.9%, $color 60%, 
-        $transparent 60%
-        ),
-        linear-gradient(45deg,
-        $color 10%,
-        $transparent 10%
-        );
-    background-size: 0.4em 0.4em;
-}
+.header-content
+	margin: $padding
+	padding: $padding * 8
+
+	background-color: lightgrey
+	border-radius: $padding 
+
+	h1
+		display: inline-block
+
+		font-size: 60px
+
+	.fa-github 
+		font-size: 40px
+
+.grid 
+	display: flex
+	flex-wrap: wrap
+	justify-content: space-between
+	margin-top: $padding * 4
 
 
-.wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    height: 100%;
-    max-width: 960px;
-    margin-left: auto;
-    margin-right: auto;
-}
+.grid-itm
+	flex: 0 1 calc(50% - 10px)
+	margin-bottom: $padding * 4
 
-.wrapper-itm {
-    flex: 0 1 calc(25% - 5%);
-}
+	border: 1px solid grey
+	border-radius: $padding
 
-.logo {
-    img {
-        width: 100%;
-    }
-}
+	img
+		width: 100%
+		padding-top: $padding
+		padding-left: $padding
+		padding-right: $padding
 
-.banner {
-    text-align: center;
+		border-radius: $padding * 2
+			
+@media (max-width: 600px)
+	.grid-itm
+		flex: 0 1 100%
 
-    h1 {
-        font-weight: 700;
-        font-size: 55px;
-        color: black;
+.grid-content
+	padding: $padding * 4
 
-        span {
-            display: inline;
-    background-image: linear-gradient(#fff, #fff), linear-gradient(#fff, #fff), linear-gradient(#d81919, #f50000);
-    background-size: 0.1em 0.01em, 0.07em 0em, 0.07em 0.07em;
-    background-repeat: no-repeat, no-repeat, repeat-x;
-    background-position-y: 72%, 72%, 88%;
-    background-position-x: 0%, 100%, 0%;
-            // text-decoration-color: red;
-            // text-decoration-line: underline;
-            font-size: 55px;
+.content-title
+	margin-bottom: $padding * 4
 
-            color: black;
-        }
-    }
-}
-
-@media (max-width: 900px) {
-    .banner h1 {
-        font-size: 40px;
-
-        span {
-            font-size: 40px;
-        }
-    }
-}
-
-@media (max-width: 400px) {
-    .banner h1 {
-        font-size: 30px;
-
-        span {
-            font-size: 30px;
-        }
-    }
-}
-
-.sign-up {
-    display: flex;
-    flex-direction: column;
-    width: 44.791666666666666666666666666667%; //430 / 960
-
-    form {
-        position: relative;
-    }
-
-    input {
-        width: 100%;
-        height: 50px;
-        margin-top: 5px;
-        margin-bottom: 5px;
-
-        text-indent: 10px;
-        font-size: 20px;
-
-        background-color: rgba(0, 0, 0, 0.4);
-        border-top: none;
-        border-bottom: none;
-        border-left: none;
-        border-right: none;
-        box-shadow: 0 0 0px 1px rgba(255, 255, 255, 0.1);
-    }
-
-    button {
-        background: transparent;
-        border: none;
-        color: red;
-        position: absolute;
-        top: 8px;
-        right: 0px;
-    }
-
-    p:last-child {
-        align-self: flex-end;
-        font-size: 12px;
-    }
-}
-
-@media (max-width: 600px) {
-    .sign-up {
-        width: 90%;
-    }
-}
-
-.fa-circle {
-    color: #ec4444;
-
-}
-
-.fa-stack .fa-chevron-right {
-    left: 2px;
-}
-
-// http://html5.by/blog/placeholder/
-::-webkit-input-placeholder {color:#a2a2a2;}
-::-moz-placeholder          {color:#a2a2a2;}/* Firefox 19+ */
-:-moz-placeholder           {color:#a2a2a2;}/* Firefox 18- */
-:-ms-input-placeholder      {color:#a2a2a2;}
-
-.footer {
-    a {
-        display: flex;
-        align-items: center;
-
-        text-decoration-line: none;
-        
-        .fa-twitter {
-            font-size: 25px;
-            margin-right: 10px;
-        }
-    }
-}
+	a:first-child
+		font-size: 25px
