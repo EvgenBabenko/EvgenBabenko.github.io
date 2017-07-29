@@ -53,6 +53,7 @@ table {
 }
 
 html {
+  height: 100%;
   background-image: url(../img/background.jpg);
 }
 
@@ -64,6 +65,7 @@ body * {
 }
 
 body {
+  height: 100%;
   background: linear-gradient(rgba(255, 255, 255, 0.05) 3px, rgba(0, 0, 0, 0.15) 5px) 0 0, linear-gradient(90deg, rgba(255, 255, 255, 0.05) 3px, rgba(0, 0, 0, 0.15) 5px) 0 0;
   background-size: 4px 4px;
 }
