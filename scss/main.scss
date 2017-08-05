@@ -1,5 +1,11 @@
 @import reset
 
+$padding: 5px
+$val: min-width
+$query-sm: 576px
+$query-md: 768px
+$query-lg: 992px
+
 body * 
 	font-family: 'PT Sans', sans-serif
 
@@ -7,18 +13,16 @@ body *
 	transition: all 0.3s ease-in-out
 
 a
+	$link-color: #157ed8
+
 	text-decoration: none
+	color: $link-color
 
-	color: #337ab7
 	&:hover
-		text-decoration: underline
-		color: #23527c
-
-$padding: 5px
+		color: darken($link-color, 20%)
 
 body
-	margin: $padding * 3
-	max-width: 960px
+	max-width: 990px
 	margin-left: auto
 	margin-right: auto
 
@@ -28,32 +32,56 @@ body
 
 .header-content
 	margin: $padding
-	padding: $padding * 8
+	padding: $padding * 2
 
 	background-color: lightgrey
 	border-radius: $padding 
 
-	h1
-		display: inline-block
+	@media ($val: $query-sm)
+		padding: $padding * 4
 
-		font-size: 60px
+	h1
+		padding-bottom: $padding * 3
+
+		font-size: 30px
+
+		@media ($val: $query-sm)
+			font-size: 45px
+
+		@media ($val: $query-lg)
+			font-size: 60px
+
+	span
+		padding-right: $padding * 2
+		
+		font-size: 20px
 
 	.fa-github 
-		font-size: 40px
+		font-size: 25px
 
 .grid 
 	display: flex
 	flex-wrap: wrap
 	justify-content: space-between
-	margin-top: $padding * 4
+	margin-top: $padding * 2
+	margin-bottom: $padding * 2
 
+	@media ($val: $query-sm)
+		margin-top: $padding * 4
 
 .grid-itm
-	flex: 0 1 calc(50% - 10px)
-	margin-bottom: $padding * 4
+	flex: 0 1 100%
+	margin-bottom: $padding * 2
 
 	border: 1px solid grey
 	border-radius: $padding
+
+	&:last-child
+		margin-bottom: 0px
+
+	@media ($val: $query-sm)
+		flex: 0 1 calc(50% - 10px)
+		margin-bottom: $padding * 4
 
 	img
 		width: 100%
@@ -63,15 +91,21 @@ body
 
 		border-radius: $padding * 2
 			
-@media (max-width: 600px)
-	.grid-itm
-		flex: 0 1 100%
-
 .grid-content
 	padding: $padding * 4
 
 .content-title
 	margin-bottom: $padding * 4
 
-	a:first-child
-		font-size: 25px
+	a
+		margin-right: 3px
+		
+		&:first-child
+			font-size: 25px
+
+		&:last-child
+			margin-right: 0px
+
+		+ a 
+			font-size: 14px
+
