@@ -227,7 +227,7 @@ body {
     box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.28), 0px -1px 8px rgba(255, 255, 255, 0.1);
     border-radius: 300px / 1px;
   }
-  .logout-itm :last-child {
+  .logout-itm:last-child {
     margin-bottom: 0px;
   }
 }
@@ -287,6 +287,9 @@ body {
 .checkbox {
   position: relative;
 }
+.checkbox label:last-child {
+  cursor: pointer;
+}
 
 .checkbox input + label {
   position: absolute;
@@ -296,6 +299,7 @@ body {
   height: 16px;
   background: #2d333c;
   border: 1px solid rgba(255, 255, 255, 0.4);
+  cursor: pointer;
 }
 
 .checkbox input + label:after {
