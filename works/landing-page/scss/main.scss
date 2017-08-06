@@ -16,7 +16,7 @@ body * {
 body {
 	$line-grid: rgba(255, 255, 255, 0.05) 3px, rgba(0, 0, 0, .15) 5px;
 	background: linear-gradient($line-grid) 0 0,
-    linear-gradient(90deg, $line-grid) 0 0;
+    			linear-gradient(90deg, $line-grid) 0 0;
    	background-size: 4px 4px;
 }
 
@@ -235,7 +235,7 @@ $white: white;
 			}
 		}
 
-		:last-child {
+		&:last-child {
 			margin-bottom: 0px;
 		}
 	}
@@ -292,6 +292,12 @@ $grey: #656a71;
 // https://paulund.co.uk/playground/demo/css-style-checkboxes/
 .checkbox {
     position: relative;
+
+    label {
+    	&:last-child {
+    		cursor: pointer;
+    	}
+    }
 }
 
 .checkbox input + label {
@@ -305,6 +311,7 @@ $grey: #656a71;
     background: #2d333c;
 
     border: 1px solid rgba(255, 255, 255, 0.4);
+    cursor: pointer;
 }
 
 .checkbox input + label:after {
