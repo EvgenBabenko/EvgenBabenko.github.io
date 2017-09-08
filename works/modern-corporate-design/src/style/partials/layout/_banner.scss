@@ -1,0 +1,131 @@
+.banner {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 47.376664056382145653876272513704vw; //605px / 1277px
+	margin-bottom: 1.5rem;
+
+	text-align: center;
+
+	color: $color-invert;
+
+	background-image: url(../img/banner.jpg);
+	background-position: center center;
+	background-size: cover;
+
+	box-shadow: inset 0 0 33vw 15.5vw black;
+
+	p {
+		position: relative;
+
+		font-size: 1.6rem;
+		font-family: $Lato;
+		text-transform: lowercase;
+		
+		color: $color-invert;
+
+		&:first-of-type {
+
+			&:before,
+			&:after {
+				position: absolute;
+				content: "";
+				top: 0.6rem;
+				width: 0.6rem;
+				height: 0.6rem;
+
+				border-radius: 50%;
+				background-color: $color-invert;
+			}
+
+			&:before {
+				left: -2rem;
+			}
+
+			&:after {
+				right: -2rem;
+			}
+		}
+
+		&:last-of-type {
+
+			&:before,
+			&:after {
+				position: absolute;
+				content: "";
+				top: 0.7rem;
+				width: 10rem;
+				height: 0.2rem;
+
+				border-top: 1px solid $color-invert;
+				border-bottom: 1px solid $color-invert;
+
+				@include MQ($M) {
+					display: none;
+				}
+			}
+
+			&:before {
+				left: -11.5rem;
+			}
+
+			&:after {
+				right: -11.5rem;
+			}
+		}
+
+		@include MQ(375px) {
+			display: none;
+		}
+	}
+
+	h1 {
+		width: 100%; //for IE11
+		margin-top: 2.7407987470634299138606108065779vw; //3.5rem
+		margin-bottom: 2.7407987470634299138606108065779vw;
+
+		font-size: 5rem;
+		font-family: $Lato;
+		text-transform: uppercase;
+		font-weight: 900;
+		
+		color: $color-invert;
+
+		@include MQ($L) {
+			font-size: 3.5rem;
+		}
+
+		@include MQ($M) {
+			font-size: 2.5rem;
+		}
+
+		@include MQ(375px) {
+			font-size: 1.8rem;
+		}
+	}
+
+	form {
+		margin-top: 6.3492063492063492063492063492063vw; //8rem
+		
+		input {
+			@include reset-btn;
+			padding: 1.5rem 4rem;
+
+			font-size: 1.4rem;
+			font-family: $Lato;
+			text-transform: uppercase;
+		
+			color: $color-invert;
+
+			border-top: $border;
+			border-bottom: $border;
+			border-left: $border;
+			border-right: $border;
+
+			@include MQ(375px) {
+				padding: 0.7rem 1.5rem;
+			}
+		}
+	}
+}

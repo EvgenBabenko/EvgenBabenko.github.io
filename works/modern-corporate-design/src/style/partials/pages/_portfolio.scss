@@ -1,0 +1,40 @@
+.portfolio-wrapper {
+	@extend %layout;
+	margin-bottom: 2rem;
+
+	@include MQ($L) {
+		width: 96%;
+	}
+
+	@include MQ($M) {
+		margin-bottom: 0rem;
+	}
+}
+
+.portfolio {
+	@extend %grid;
+	margin-top: 6rem;
+}
+
+.portfolio-itm {
+	flex-grow: 0; //for IE11
+	flex-shrink: 1; //for IE11
+	flex-basis: calc(50% - 2rem); //for IE11
+	flex: 0 1 calc(50% - 2rem);
+	margin-bottom: 3.7rem;
+
+	@include MQ($M) {
+		flex-basis: 100%;
+	}
+
+	img {
+		width: 100%;
+	}
+
+	figcaption {
+		margin-top: 1.5rem;
+		
+		font-size: 1.6rem;
+		text-align: center;
+	}
+}

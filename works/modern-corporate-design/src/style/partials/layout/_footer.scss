@@ -1,0 +1,61 @@
+footer {
+	display: flex; //for IE11
+	background-color: $color-primary;
+}
+
+.footer-wrapper {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-wrap: wrap;
+	width: $width;
+	min-height: 6rem;
+	margin-left: auto;
+	margin-right: auto;
+
+	color: $color-secondary;
+
+	@include MQ($L) {
+		width: 96%;
+	}
+
+	@include MQ(475px) {
+		flex-direction: column;
+	}
+}
+
+.socials {
+	font-size: 2.5rem;
+
+	a {
+		display: inline-block;
+		margin-right: 1rem;
+
+		text-decoration: none;
+
+		i {
+			display: block;
+		}
+		
+	}
+}
+
+.copyright {
+
+	@include MQ(475px) {
+		width: 100%; //for IE11
+	}
+	
+	p {
+		text-align: center;
+
+		&:last-child {
+			text-align: end;
+			margin-top: 0.5rem;
+
+			@include MQ(475px) {
+				text-align: center;
+			}
+		}
+	}
+}

@@ -1,0 +1,69 @@
+.services-wrapper {
+	@extend %layout;
+	margin-bottom: 2.8rem;
+
+	@include MQ($L) {
+		width: 96%;
+	}
+
+	@include MQ($M) {
+		margin-bottom: 0rem;
+	}
+}
+
+.services {
+	@extend %grid;
+	margin-top: 5.5rem;
+}
+
+.service {
+	display: flex;
+	flex-grow: 0; //for IE11
+	flex-shrink: 1; //for IE11
+	flex-basis: calc(50% - 2rem); //for IE11
+	flex: 0 1 calc(50% - 2rem);
+	margin-bottom: 5.2rem;
+
+	@include MQ($M) {
+		flex-basis: 100%;
+		margin-bottom: 3rem;
+	}
+}
+
+.service-side {
+	font-size: 3.5rem;
+
+	color: $color-accent;
+
+	i {
+		display: block;
+	}
+}
+
+.service-base {
+	margin-left: 1.5rem;
+	
+	h3 {
+		font-size: 2rem;
+		font-family: $Lato;
+	}
+
+	p {
+		margin-top: 1.5rem;
+		margin-bottom: 1rem;
+
+		line-height: 2.2rem;
+		font-size: 1.4rem;
+		
+		color: $color-secondary;
+	}
+
+	a {
+		font-size: 1.4rem;
+		color: $color-secondary;
+
+		&:hover {
+			color: $color-accent;
+		}
+	}
+}

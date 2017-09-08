@@ -1,0 +1,42 @@
+// breakpoints
+
+$S: 320px;   
+$M: 768px;     
+$L: 1024px; 
+// $L: 977px; 
+$XL: 1200px;
+// $XL: 1277px;
+$val: max-width;
+
+// media queries
+
+@mixin MQ($canvas) {
+	@if $canvas == $S {
+		@media ($val: $S) { @content; }
+	}
+
+	@else if $canvas == $M {
+		@media ($val: $M) { @content; }
+	}
+	
+	@else if $canvas == $L {
+		@media ($val: $L) { @content; }
+	}
+
+	@else if $canvas == $XL {
+		@media ($val: $XL) { @content; }
+	}
+
+	@else {
+		@media ($val: $canvas) { @content; }
+	}
+}
+
+@mixin reset-btn {
+	border: none;
+	background: none;
+	outline: none;
+	margin: 0px;
+	padding: 0px;
+	cursor: pointer;
+}

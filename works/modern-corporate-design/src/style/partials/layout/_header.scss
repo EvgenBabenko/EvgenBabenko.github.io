@@ -1,0 +1,108 @@
+$height-logo: 4rem;
+$padding-logo: 2rem;
+
+$height-item: 1.4rem;
+$margin-item: 1rem;
+
+$nav-height: $height-logo + 2 * $padding-logo;
+
+header {
+	position: relative;
+
+	background-color: $color-primary;
+
+	&[class=theme-light] {
+		background-color: $color-invert;
+
+		span {
+			color: $color-primary;
+		}
+	}
+}
+
+.nav {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: $width;
+	margin-left: auto;
+	margin-right: auto;
+	height: $nav-height;
+	
+	@include MQ($L) {
+		width: 96%;
+	}
+
+	span {
+		font-size: $height-logo;
+		font-family: $Lato;
+		font-weight: 900;
+		text-transform: uppercase;
+		
+		color: $color-invert;
+	}
+}
+
+.menu-left,
+.menu-right {
+	display: flex;
+	justify-content: space-between;
+	width: 38%;
+
+	text-transform: uppercase;
+
+	@include MQ($L) {
+		display: none;
+	}
+
+	.active {
+		color: $color-accent;
+	}
+
+	li {
+		font-size: $height-item;
+
+		a {
+			color: $color-nav;
+			text-decoration: none;
+
+			&:hover {
+				color: $color-accent;
+			}
+		}
+	}
+}
+
+#toggle {
+	display: none;
+	
+	@include MQ($L) {
+		@include reset-btn;
+		display: block;
+	}
+}
+
+.toggle-on-left {
+	position: absolute;
+	top: $nav-height;
+	left: 0rem;
+
+	display: block;
+	width: 100%;
+
+	background-color: $color-primary;
+
+	li {
+		padding-left: 2%;
+		margin-bottom: $margin-item;
+	}
+
+	header[class=theme-light] & {
+		background-color: $color-invert;
+	}
+}
+
+.toggle-on-right {
+	@extend .toggle-on-left;
+	top: $nav-height + 3 * ($height-item + $margin-item);
+}

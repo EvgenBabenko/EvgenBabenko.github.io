@@ -1,0 +1,19 @@
+//Here are the global variables
+//but local variables are placed each in their own file
+
+$Lato: 'Lato', sans-serif;
+$OpenSans: 'Open Sans', sans-serif;
+
+
+$color-primary: #000;
+$color-secondary: #606060;
+$color-accent: #2980b9;
+$color-nav: #7f8c8d;
+$color-invert: #fff;
+
+
+$mockup-width: 960px;
+$document-width: 1260px;
+$width: percentage($mockup-width / $document-width);
+
+$border: 1px $color-invert solid;

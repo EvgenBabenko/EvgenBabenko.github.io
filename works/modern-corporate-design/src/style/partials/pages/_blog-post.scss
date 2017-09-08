@@ -1,0 +1,58 @@
+.post-wrapper {
+	width: 100%;
+}
+
+.post {
+	@extend %layout;
+
+	text-align: center;
+
+	@include MQ($L) {
+		width: 96%;
+	}
+
+	h3 {
+		font-family: $Lato;
+		font-size: 2rem;
+	}
+
+	img {
+		margin-top: 2rem;
+		margin-bottom: 4rem;
+		
+		@include MQ($M) {
+			width: 100%;
+		}
+	}
+
+	p {
+		margin-bottom: 2rem;
+
+		font-size: 1.4rem;
+		line-height: 2.2rem;
+
+		color: $color-secondary;
+	}
+
+	> .separator {
+		@extend %separator;
+		margin-top: 2rem;
+		margin-bottom: 0.5rem;
+	}
+
+	.social-media-share {
+		margin-bottom: 2rem;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+

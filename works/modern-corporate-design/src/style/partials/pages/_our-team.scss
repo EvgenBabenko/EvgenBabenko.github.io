@@ -1,0 +1,77 @@
+.team-wrapper {
+	@extend %layout;
+	margin-bottom: 1.3rem;
+	
+	@include MQ($L) {
+		width: 96%;
+	}
+
+	@include MQ($M) {
+		margin-bottom: 0rem;
+	}
+}
+
+.team {
+	@extend %grid;
+	margin-top: 6rem;
+
+}
+
+.team-itm {
+	flex-grow: 0; //for IE11
+	flex-shrink: 1; //for IE11
+	flex-basis: calc(25% - 2rem); //for IE11
+	flex: 0 1 calc(25% - 2rem);
+	margin-bottom: 5.5rem;
+
+	text-align: center;
+
+	@include MQ($M) {
+		flex-basis: calc(50% - 2rem);
+	}
+
+	@include MQ(425px) {
+		flex-basis: 100%;
+	}
+
+	img {
+		
+		@include MQ(1259px) {
+			width: 100%;
+		}
+	}
+
+	h4 {
+		margin-top: 1.7rem;
+		margin-bottom: 1.5rem;
+		
+		font-size: 1.6rem;
+	}
+
+	p {
+		width: 100%; //for IE11
+		margin-bottom: 2rem;
+
+		line-height: 1.8rem;
+		
+		color: $color-secondary;
+	}
+}
+
+.team-socials {
+	width: 54.5%;
+	display: flex;
+	justify-content: space-between;
+	margin-left: auto;
+	margin-right: auto;
+
+	font-size: 2.2rem;	
+
+	a {
+		text-decoration: none;
+
+		i{
+			display: block;
+		}
+	}
+}

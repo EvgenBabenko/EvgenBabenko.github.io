@@ -1,0 +1,59 @@
+.blog-wrapper {
+	@extend %layout;
+	margin-bottom: 9.7rem;
+
+	@include MQ($L) {
+		width: 96%;
+	}
+
+	@include MQ($M) {
+		margin-bottom: 0rem;
+	}
+}
+
+.blog {
+	@extend %grid;
+	margin-top: 6rem;
+}
+
+.blog-itm {
+	flex-grow: 0; //for IE11
+	flex-shrink: 1; //for IE11
+	flex-basis: calc(50% - 2rem); //for IE11
+	flex: 0 1 calc(50% - 2rem);
+
+	margin-bottom: 5.1rem;
+
+	@include MQ($M) {
+		flex-basis: 100%;
+	}
+
+	img {
+		width: 100%;
+	}
+
+	h3 {
+		margin-top: 1rem;
+
+		font-size: 2rem;
+		font-family: $Lato;
+	}
+
+	p {
+		margin-top: 1.3rem;
+		margin-bottom: 0.7rem;
+
+		line-height: 2.2rem;
+		font-size: 1.4rem;
+		
+		color: $color-secondary;
+	}
+
+	a {
+		@extend p;
+
+		&:hover {
+			color: $color-accent;
+		}
+	}
+}

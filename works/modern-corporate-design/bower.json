@@ -1,0 +1,19 @@
+{
+  "name": "modern-corporate-design",
+  "description": "",
+  "authors": [
+    "EvgenBabenko <ваша_электронная_почта>"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "3.*"
+  }
+}

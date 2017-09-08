@@ -1,0 +1,209 @@
+* {
+	box-sizing: border-box;
+}
+
+html {
+	font-size: 62.5%; // = 10px
+}
+
+body {
+	color: $color-primary;
+	font-family: $OpenSans;
+	font-size: 1.2rem; // = 12px for all by default
+}
+
+.sprite {
+	background-image: url(../img/sprite.png);
+	background-repeat-x: no-repeat;
+  background-repeat-y: no-repeat;
+}
+
+.arrow-left {
+	cursor: pointer;
+	background-position: 0 0;
+	width: 14px;
+	height: 23px;
+
+	&:hover {
+		background-position: -15px 0;
+	}
+}
+
+.arrow-right {
+	cursor: pointer;
+	background-position: -45px 0;
+	width: 14px;
+	height: 23px;
+
+	&:hover {
+		background-position: -30px 0;
+	}
+}
+
+.bubble {
+	background-position: -60px 0;
+	width: 32px;
+	height: 32px;
+}
+
+.chart {
+	background-position: -93px 0;
+	width: 32px;
+	height: 32px;
+}
+
+.facebook {
+	background-position: -148px 0;
+	width: 10px;
+	height: 18px;
+
+	&:hover {
+		background-position: -137px 0;
+	}
+}
+
+.facebook-black {
+	background-position: -126px 0;
+	width: 10px;
+	height: 18px;
+
+	&:hover {
+		background-position: -137px 0;
+	}
+}
+
+.gplus {
+	background-position: -199px 0;
+	width: 19px;
+	height: 18px;
+
+	&:hover {
+		background-position: -179px 0;
+	}
+}
+
+.gplus-black {
+	background-position: -159px 0;
+	width: 19px;
+	height: 18px;
+
+	&:hover {
+		background-position: -179px 0;
+	}
+}
+
+.headphones {
+	background-position: -219px 0;
+	width: 33px;
+	height: 32px;
+}
+
+.list {
+	background-position: 0 -33px;
+	width: 32px;
+	height: 32px;
+}
+
+.location-pin {
+	background-position: -33px -33px;
+	width: 24px;
+	height: 32px;
+}
+
+.map {
+	background-position: -58px -33px;
+	width: 48px;
+	height: 48px;
+}
+
+.message {
+	background-position: -107px -33px;
+	width: 32px;
+	height: 24px;
+}
+
+.musical-note {
+	background-position: -140px -33px;
+	width: 33px;
+	height: 32px;
+}
+
+.padlock {
+	background-position: -174px -33px;
+	width: 32px;
+	height: 32px;
+}
+
+.pencil {
+	background-position: -207px -33px;
+	width: 32px;
+	height: 32px;
+}
+
+.pinterest {
+	background-position: -16px -82px;
+	width: 15px;
+	height: 18px;
+
+	&:hover {
+		background-position: 0 -82px;
+	}
+}
+
+.pinterest-black {
+	background-position: -240px -33px;
+	width: 15px;
+	height: 18px;
+
+	&:hover {
+		background-position: 0 -82px;
+	}
+}
+
+.rss {
+	background-position: -52px -82px;
+	width: 19px;
+	height: 19px;
+
+	&:hover {
+		background-position: -32px -82px;
+	}
+}
+
+.sun {
+	background-position: -72px -82px;
+	width: 32px;
+	height: 32px;
+}
+
+.twitter {
+	background-position: -156px -82px;
+	width: 23px;
+	height: 18px;
+
+	&:hover {
+		background-position: -131px -82px;
+	}
+}
+
+.twitter-black {
+	background-position: -106px -82px;
+	width: 23px;
+	height: 18px;
+
+	&:hover {
+		background-position: -131px -82px;
+	}
+}
+
+.user {
+	background-position: -214px -82px;
+	width: 32px;
+	height: 32px;
+}
+
+.user-black {
+	background-position: -180px -82px;
+	width: 32px;
+	height: 32px;
+}
