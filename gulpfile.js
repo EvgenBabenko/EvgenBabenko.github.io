@@ -12,13 +12,12 @@ var gulp 				= require('gulp'),
 		wait				= require('gulp-wait');
 
 var path = {
-
 		build: { //put files to
-			html: 'build/',
-			css: 'build/css/',
-			img: 'build/img/',
-			fonts: 'build/fonts/',
-			js: 'build/js/'
+			html: '',
+			css: 'css/',
+			img: 'img/',
+			fonts: 'fonts/',
+			js: 'js/'
 		},
 
 		src: { //get files from 
@@ -46,7 +45,7 @@ var path = {
 
 var config = {
 			server: {
-				baseDir: "build"
+				baseDir: ''
 		},
 		tunnel: true,
 		host: 'localhost',
@@ -112,9 +111,9 @@ gulp.task('watch', function() {
 	gulp.watch(path.watch.js, ['js']);
 });
 
-gulp.task('clean', function() {
-	del.sync('build');
-});
+// gulp.task('clean', function() {
+// 	del.sync('build');
+// });
 
 gulp.task('clear', function() {
 	cache.clearAll();
