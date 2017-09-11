@@ -6,7 +6,7 @@ var gulp 				= require('gulp'),
 		cleanCSS 		= require('gulp-clean-css'),
 		imagemin 		= require('gulp-imagemin'),
 		pngquant 		= require('imagemin-pngquant'),
-		rename 			= require('gulp-rename'),
+		cache				= require('gulp-cache'),
 		uglify			= require('gulp-uglify'),
 		rigger 			= require('gulp-rigger'),
 		wait				= require('gulp-wait');
@@ -82,12 +82,12 @@ gulp.task('sass', function() {
 
 gulp.task('img', function() {
 	gulp.src(path.src.img)
-	.pipe(imagemin({
+	.pipe(cache(imagemin({
 		interlaced: true,
 		progressive: true,
 		svgoPlugins: [{removeViewBox: false}],
 		use: [pngquant()]
-	}))
+	})))
 	.pipe(gulp.dest(path.build.img))
 	.pipe(browserSync.reload({stream: true}));
 });
@@ -106,19 +106,18 @@ gulp.task('webserver', function () {
 
 gulp.task('watch', function() {
 	gulp.watch(path.watch.html, ['html']);
-
 	gulp.watch(path.watch.sass, ['sass']);
-
 	gulp.watch(path.watch.img, ['img']);
-
 	gulp.watch(path.watch.fonts, ['fonts']);
-
 	gulp.watch(path.watch.js, ['js']);
-
 });
 
 gulp.task('clean', function() {
 	del.sync('build');
+});
+
+gulp.task('clear', function() {
+	cache.clearAll();
 });
 
 gulp.task('build', [
@@ -129,4 +128,8 @@ gulp.task('build', [
 	'js'
 ]);
 
-gulp.task('default', ['build', 'watch', 'webserver']);
+gulp.task('default', [
+	'build',
+	'watch',
+	'webserver'
+]);
