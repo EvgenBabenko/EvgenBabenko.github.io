@@ -1,0 +1,12 @@
+{
+  "name": "java-script",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "main": "node ./main.js" //run this task - npm start // npm run start // npm run-scripts start
+  },
+  "author": "",
+  "license": "ISC"
+}

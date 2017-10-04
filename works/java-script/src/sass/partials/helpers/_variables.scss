@@ -1,0 +1,8 @@
+//Here are the global variables
+//but local variables are placed each in their own file
+
+$PTSans: 'PT Sans', sans-serif;
+
+$mockup-width: 960px;
+$document-width: 1260px;
+$width: percentage($mockup-width / $document-width);

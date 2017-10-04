@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>pageTitle</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/main.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,700" rel="stylesheet">
+    <script src="js/main.js"></script>
+  </head>
+</html>
+<body>
+  <div class="content">
+    <div class="title">Java Script</div>
+    <div class="accordion">
+        <div class="accordion-section"><a class="accordion-title" href="#accordion-1">Реализовать простейший templater</a>
+          <div class="accordion-content" id="accordion-1">
+            <div class="accordion-content-info"><a href="http://jscourse.com/task/simple-templater">http://jscourse.com/task/simple-templater</a>
+              <p>Описать функцию templater(templateString, dataObj). Функция, принимает аргументом строку и объект. Заменяет все вхождения подстрок вида ${STRING} значениями из объекта с ключом STRING. Пример использования:</p>
+              <pre> 
+    templater('${who} ${action} ${what}', { 
+      who: 'mama', 
+      action: 'mila', 
+      what: 'ramu' 
+    }); // 'mama mila ramu' 
+    </pre>
+            </div>
+            <div class="accordion-content-solution">
+              <p></p>
+              <pre>function templater(templateString, dataObj) {
+  var stringToReplace;
+  var dataToReplace;
+  for (var key in dataObj) {
+    stringToReplace = '${' + key + '}';
+    dataToReplace = dataObj[key];
+    while (templateString.indexOf(stringToReplace) !== -1) {
+      templateString = templateString.replace(stringToReplace, dataToReplace);
+    }
+  }
+  return templateString;
+}</pre>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-section"><a class="accordion-title" href="#accordion-2">Ключник</a>
+          <div class="accordion-content" id="accordion-2">
+            <div class="accordion-content-info"><a href="http://jscourse.com/task/keeper">http://jscourse.com/task/keeper</a>
+              <p>Релизовать функцию createKeeper(), которая возвращает объект с 2 методами put(key, value) и get(key). Метод get(key) должен возвращать данные, которые были сохранены с помощью метода put, если вызывается с тем-же значением key, что и put.Ключами могут быть как объекты, так и примитивы, про NaN не задумываться.Если put был вызван с таким ключом, с которым уже был вызван ранее, старое значение перезатирается новым. Доступ к ключам и значениями должен быть возможен только через методы put и get.</p>
+              <pre> 
+    var keeper = createKeeper(); 
+    var key1 = {}; 
+    var key2 = {}; 
+    var key1Copy = key1; 
+ 
+    keeper.put(key1, 999) 
+    keeper.put(key2, [1, 2, 3]) 
+    console.log(keeper.get(key1)); // 999 
+    console.log(keeper.get(key2)); // [1,2,3] 
+    console.log(keeper.get(key1Copy)); // 999 
+    console.log(keeper.get({})); // null 
+    keeper.put(key1, key2); 
+    console.log(keeper.get(key1Copy) === key2); // true 
+    </pre>
+            </div>
+            <div class="accordion-content-solution">
+              <p></p>
+              <pre>function createKeeper() {
+  var buffer = []; //where even index is a key and odd index is a value
+
+  return {
+    put: function(key, value) {
+      if (buffer.indexOf(key) !== -1) {
+        buffer[buffer.indexOf(key) + 1] = value;
+      } else {
+        buffer.push(key, value);
+      }
+    },
+
+    get: function(key) {
+      if (buffer.indexOf(key) !== -1) {
+        return buffer[buffer.indexOf(key) + 1];
+      } else {
+        return null;
+      }
+    }
+  };
+}</pre>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-section"><a class="accordion-title" href="#accordion-3">Объединить несколько функций в одну</a>
+          <div class="accordion-content" id="accordion-3">
+            <div class="accordion-content-info"><a href="http://jscourse.com/task/compose">http://jscourse.com/task/compose</a>
+              <p>Реализовать функцию compose, которая принимает аргументами любое количество функций, и возвращает функцию, которая при вызове вызовет все функции, которые compose получила аргументом.</p>
+              <pre> 
+    function log1() {console.log(111)}; 
+    function log2() {console.log(222)}; 
+    function log3() {console.log(333)}; 
+    var logAll = compose(log1, log2, log3); 
+    logAll(); // 111 
+              // 222 
+              // 333 
+    </pre>
+            </div>
+            <div class="accordion-content-solution">
+              <p></p>
+              <pre>function compose() {
+  var args = [].slice.call(arguments);
+  return function() {
+    args.forEach(function(e) {
+      e();
+    });
+  };
+}</pre>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-section"><a class="accordion-title" href="#accordion-4">Создать массив из массивоподобного объекта</a>
+          <div class="accordion-content" id="accordion-4">
+            <div class="accordion-content-info"><a href="http://jscourse.com/task/array-like-object-to-array">http://jscourse.com/task/array-like-object-to-array</a>
+              <p>Реализовать функцию toArray(obj), которая принимает аргументом массивоподобный объект (например arguments), и возвращает массив из тех же элементов, которые входили в массивоподобный объект. Пример работы:</p>
+              <pre> 
+    function someFunc() { 
+      var args = toArray(arguments); 
+      console.log(arguments.forEach); // undefined, метод есть только у массивов. 
+      console.log(args.forEach); // [function], метод есть только у массивов. 
+    } 
+ 
+    someFunc(1,2,3,4); 
+    </pre>
+            </div>
+            <div class="accordion-content-solution">
+              <p>for loop</p>
+              <pre>function toArray(obj) {
+  var res = [];
+  for (var i = 0; i &lt; obj.length; i++) {
+    res.push(obj[i]);
+  }
+  return res;
+}</pre>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-section"><a class="accordion-title" href="#accordion-5">Преобразовать строку запроса (query string) в объект</a>
+          <div class="accordion-content" id="accordion-5">
+            <div class="accordion-content-info"><a href="http://jscourse.com/task/query-string-to-object">http://jscourse.com/task/query-string-to-object</a>
+              <p>Реализуй функцию queryStringToObject(queryString), которая возвращает объект. Распознавать следующие типы данных: числа, строки, булевы. Помни, что некоторые символы query string могут быть закодированы. Пример работы:</p>
+              <pre> 
+    queryStringToObject('user=true'); // {user: true} 
+    queryStringToObject('user=true&amp;age=29'); // {user: true, age: 29} 
+    queryStringToObject('user=true&amp;age=29&amp;name=Evgen'); // {user: true, age: 29, name: 'Evgen'} 
+    </pre>
+            </div>
+            <div class="accordion-content-solution">
+              <p>for loop</p>
+              <pre>function queryStringToObject(queryString) {
+  var pairsKeyValue = queryString.split('&amp;');
+  var key;
+  var value;
+  var res = {};
+
+  if (!queryString) return res;
+
+  for (var i = 0; i &lt; pairsKeyValue.length; i++) {
+    key = pairsKeyValue[i].split('=')[0];
+    value = decodeURIComponent(pairsKeyValue[i].split('=')[1]);
+    if (value === 'true') {
+      value = true;
+    } else if (value === 'false') {
+      value = false;
+    } else if (!isNaN(value)) {
+      value = parseInt(value, 10);
+    } else {
+      value = value;
+    }
+    res[key] = value;
+  }
+  return res;
+}</pre>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-section"><a class="accordion-title" href="#accordion-6">Сформировать список без повторений</a>
+          <div class="accordion-content" id="accordion-6">
+            <div class="accordion-content-info"><a href="http://jscourse.com/task/get-unique">http://jscourse.com/task/get-unique</a>
+              <p>Реализовать функцию getUnique(arr), которая принимает аргументом массив или массивоподоный объект, и возвращает массив таких элементов, которые входят в массив аргумента, и встречаются только раз в массиве результата. Аргумент не должен изменяться. Порядок элементов результирующего массива должен совпадать с порядком, в котором они встречаются в оригинальной структуре.</p>
+              <pre> 
+    var a = {}; 
+    var b = {}; 
+    var u = getUnique([a,b,b,a]); 
+    console.log(u[0] === a); // true 
+    console.log(u[1] === b); // true 
+    console.log(u.length === 2); // true 
+    </pre>
+            </div>
+            <div class="accordion-content-solution">
+              <p>for loop</p>
+              <pre>function getUnique(list) {
+  var res = [];
+  for (var i = 0; i &lt; list.length; i++) {
+    if (res.indexOf(list[i]) === -1) res.push(list[i]);
+  }
+  return res;
+}</pre>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-section"><a class="accordion-title" href="#accordion-7">Найти и исправить объект в структуре</a>
+          <div class="accordion-content" id="accordion-7">
+            <div class="accordion-content-info"><a href="http://jscourse.com/task/fix-object-in-sequence">http://jscourse.com/task/fix-object-in-sequence</a>
+              <p>Есть структура вида:    [{        delta: 5,        value: 5    }, {        delta: -3,        value: 2    }, {        delta: 5,        value: 7    }, {        delta: 0,        value: 7    }]    Она подчиняется следющему правилу: каждый последующий объект массива содержит объект со свойствами delta и value. delta - разница значений value с предыдущим объектом.    У тебя есть экземпляр структуры, и достоверно известно, что один (и только один) из элементов имеет неверное значение delta и value, и что этот элемент не является ни первым, ни последним. Необходимо написать функцию fixStruct(struct), которая изменяет неверное значение таким образом, чтобы его delta и value снова подчинялись правилу, описанному выше. Пример работы:</p>
+              <pre> 
+    var struct = [{ 
+        delta: 0, 
+        value: 1 
+    }, { 
+        delta: 0, 
+        value: 0 
+    }, { 
+        delta: 3, 
+        value: 5 
+    }]; 
+    console.log(fixStruct(struct)); 
+    [{ 
+        delta: 0, 
+        value: 1 
+    }, { 
+        delta: 1, 
+        value: 2 
+    }, { 
+        delta: 3, 
+        value: 5 
+    }] 
+    </pre>
+            </div>
+            <div class="accordion-content-solution">
+              <p>for loop</p>
+              <pre>function fixStruct(struct) {
+  for (var i = 1; i &lt; struct.length - 1; i++) { //not first and last
+    if (struct[i].delta !== struct[i].value - struct[i - 1].value) {
+      break;
+    }
+  }
+  struct[i].value = struct[i + 1].value - struct[i + 1].delta;
+  struct[i].delta = struct[i].value - struct[i - 1].value;
+  return struct;
+}</pre>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-section"><a class="accordion-title" href="#accordion-8">Реализовать счетчик, сокрыв детали реализации</a>
+          <div class="accordion-content" id="accordion-8">
+            <div class="accordion-content-info"><a href="http://jscourse.com/task/incapsulated-counter">http://jscourse.com/task/incapsulated-counter</a>
+              <p>Написать функцию createSummator(initialValue), с опциональным (необязательным) первым параметром, который является точкой отчета счетчика. Если аргумент initialValue не передан, то отчет начинается с 0. При каждом вызове функция возвращает объект с методами inc(num), dec(num), get(). Объектов, которые возвращает функция createSummator(initialValue), может быть любое количество. 
+ 
+    Реализация должна позволять манипуляции со значением счетчика только с использованием этих методов. 
+ 
+    Вызов метода inc(num) увеличивает значение счетчика на значение аргумента num. Если метод вызван без аргумента, то значение счетчика увеличивается на 1. 
+    Вызов метода dec(num) уменьшает значение счетчика на значение num, если метод вызван с аргументом. Если метод вызван без аргумента, то значение счетчика уменьшается на 1. 
+    Вызов метода get() возвращает текущее значение счетчика. 
+    Примеры использования:</p>
+              <pre> 
+    var s1 = createSummator(); 
+    s1.inc(); 
+    s1.inc(); 
+    s1.inc(); 
+    console.log(s1.get()); // 3 
+ 
+    var s2 = createSummator(10); 
+    s2.inc(2); 
+    s2.inc(3); 
+    s2.inc(4); 
+    console.log(s2.get()); // 19 
+ 
+    var s3 = createSummator(5); 
+    s3.inc(5); 
+    s3.dec(10); 
+    console.log(s3.get()); // 0 
+    </pre>
+            </div>
+            <div class="accordion-content-solution">
+              <p></p>
+              <pre>function createSummator(initialValue) {
+  initialValue = initialValue || 0;
+  var result = initialValue;
+  return {
+    inc: function(num) {
+      num = num || 1;
+      return result += num;
+    },
+
+    dec: function(num) {
+      num = num || 1;
+      return result -= num;
+    },
+
+    get: function() {
+      return result;
+    }
+  };
+}</pre>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-section"><a class="accordion-title" href="#accordion-9">Сложить все аргументы</a>
+          <div class="accordion-content" id="accordion-9">
+            <div class="accordion-content-info"><a href="http://jscourse.com/task/summ-all-arguments">http://jscourse.com/task/summ-all-arguments</a>
+              <p>Реализуй функцию sum(), которая суммирует все передаваемые ей аргументы. В аргументах могут быть любые данные. Пример работы:</p>
+              <pre> 
+    sum(10, 20); // 30 
+    </pre>
+            </div>
+            <div class="accordion-content-solution">
+              <p>slice and call method</p>
+              <pre>function sum() {
+  args = [].slice.call(arguments);
+  return args.reduce(function(res, elem) {
+    return res + elem;
+  });
+}</pre>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-section"><a class="accordion-title" href="#accordion-10">Проверить вхождение элементов в массив</a>
+          <div class="accordion-content" id="accordion-10">
+            <div class="accordion-content-info"><a href="http://jscourse.com/task/is-in-array">http://jscourse.com/task/is-in-array</a>
+              <p>Реализовать функцию isInArray , проверяющую вхождение элементов в массив. Первый аргумент функции - массив, последующие - элементы, вхождение в массив которых проверяется. Функция возвращает true, если все аргументы, кроме первого являются элементами массива. Пример работы:</p>
+              <pre> 
+    isInArray([1], 1); // true 
+    isInArray([1], 1, 2); // false 
+    isInArray([1, 2], 1, 2); // true 
+    </pre>
+            </div>
+            <div class="accordion-content-solution">
+              <p>for loop</p>
+              <pre>function isInArray(arr) {
+  for (var i = 1; i &lt; arguments.length; i++) {
+    if (arr.indexOf(arguments[i]) === -1) return false;
+  }
+  return true;
+}</pre>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-section"><a class="accordion-title" href="#accordion-11">Получить название файла или папки из пути</a>
+          <div class="accordion-content" id="accordion-11">
+            <div class="accordion-content-info"><a href="http://jscourse.com/task/get-name-from-path">http://jscourse.com/task/get-name-from-path</a>
+              <p>Реализовать функцию getName(path), которая возвращает название папки или файла из строки пути. Разделители сегментов путей - юниксовые ('/'). Примеры путей:</p>
+              <pre> 
+    '/users/dmitry/Dropbox/' //Dropbox 
+    '/users/dmitry/Dropbox' // Dropbox 
+    '/users/dmitry/Dropbox/main.js' // main.js 
+    </pre>
+            </div>
+            <div class="accordion-content-solution">
+              <p>for loop</p>
+              <pre>function getName(path) {
+  var pathSequence = path.split('/');
+  for (var i = pathSequence.length - 1; i &gt; 0;) {
+    if (pathSequence[i] === '') {
+      i--;
+    } else {
+      return pathSequence[i];
+    }
+  }
+}</pre>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-section"><a class="accordion-title" href="#accordion-12">Выполнить функции из массива</a>
+          <div class="accordion-content" id="accordion-12">
+            <div class="accordion-content-info"><a href="http://jscourse.com/task/exec-each-function-in-array">http://jscourse.com/task/exec-each-function-in-array</a>
+              <p>Релизовать функцию execFunctions(arrOfFunctions), которая получает аргументом массив функций arrOfFunctions, и возвращает массив, где каждый элемент это результат вызова функции стоящей на индексе, что и элемент. Пример работы:</p>
+              <pre> 
+    function return10() { 
+      return 10; 
+    } 
+ 
+    function returnUser() { 
+      return {name: 'Evgen'}; 
+    } 
+ 
+    function empty() {} 
+    execFunctions([return10, returnUser, empty]); // [10, {name: 'Evgen'}, undefined] 
+    </pre>
+            </div>
+            <div class="accordion-content-solution">
+              <p>map method</p>
+              <pre>function execFunctions(arrOfFunctions) {
+  return arrOfFunctions.map(function(elem) {
+    return elem();
+  });
+}</pre>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-section"><a class="accordion-title" href="#accordion-13">Проверить каждый элемент массива на удовлетворение условию</a>
+          <div class="accordion-content" id="accordion-13">
+            <div class="accordion-content-info"><a href="http://jscourse.com/task/every">http://jscourse.com/task/every</a>
+              <p>Реализовать функцию every(arr, func), которая принимает аргументами массив arr и функцию func. Возвращает true, если функция func вернет для каждого элемента массива true. В функцию func нужно передавать аргументами элемет массива, индекс элемента массива и сам массив. Пример как должен работать код:</p>
+              <pre> 
+    Проверка на то, что все элементы массива - строки 
+      every(['mama', 'mila', 'ramu'], function (arrayItem) { 
+        return typeof arrayItem === 'string'; 
+      });; // true 
+    Проверка на то, что все элементы массива больше своих индексов 
+      every([4, 8, 1], function (arrayItem, itemIndex) { 
+        return arrayItem &gt; itemIndex 
+      });; // false 
+    </pre>
+            </div>
+            <div class="accordion-content-solution">
+              <p>for loop</p>
+              <pre>function every(arr, func) {
+  for (var i = 1; i &lt; arr.length; i++) {
+    if (func(arr[i], i, arr) !== true) return false;
+  }
+  return true;
+}</pre>
+              <p>with filter method</p>
+              <pre>function every(arr, func) {
+  var res = true;
+  arr.filter(function(e, i, array) {
+    if (func(e, i, array) !== true) res = false;
+  });
+  return res;
+}</pre>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-section"><a class="accordion-title" href="#accordion-14">Просуммировать числа из массива, которые больше 100</a>
+          <div class="accordion-content" id="accordion-14">
+            <div class="accordion-content-info"><a href="http://jscourse.com/task/summ-numbers-by-condition">http://jscourse.com/task/summ-numbers-by-condition</a>
+              <p>Реализовать функцию sumOnly100Plus, которая принимает аргументом массив, и возвращает сумму всех чисел массива, которые больше 100. В массиве могут быть не только числовые данные, их никак не учитывать. Пример работы:</p>
+              <pre>
+    sumOnly100Plus([150, '200', ' ', 30, 300]); // 450
+    </pre>
+            </div>
+            <div class="accordion-content-solution">
+              <p>for loop</p>
+              <pre>function sumOnly100Plus(arr) {
+  var result = 0;
+  for (var i = 0; i &lt; arr.length; i++) {
+    if (typeof arr[i] === 'number' &amp;&amp; arr[i] &gt; 100) {
+      result += arr[i];
+    }
+  }
+  return result;
+}</pre>
+              <p>with reduce method</p>
+              <pre>function sumOnly100Plus(arr) {
+  return arr.reduce(function(accu, current) {
+    if (typeof current === 'number' &amp;&amp; current &gt; 100) {
+      return accu + current;
+    }
+    return accu;
+  }, 0);
+}</pre>
+              <p>with reduce and filter method</p>
+              <pre>function sumOnly100Plus(arr) {
+  return arr.filter(function(value) {
+      return value &gt; 100 &amp;&amp; typeof value === 'number';
+    })
+    .reduce(function(res, value) {
+      return res + value;
+    }, 0);
+}</pre>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-section"><a class="accordion-title" href="#accordion-15">Отфильтровать элементы массива с нечетным индексом</a>
+          <div class="accordion-content" id="accordion-15">
+            <div class="accordion-content-info"><a href="http://jscourse.com/task/extract-odd-items">http://jscourse.com/task/extract-odd-items</a>
+              <p>Реализовать функцию extractOddItems(arr), которая возвращает новый массив, в котором содержатся только те элементы, которые обладали нечетным индексом в массиве, переданном в качестве аргумента. Пример работы:</p>
+              <pre> 
+    extractOddItems([0,1,0,1,0,1]); // [1,1,1], 
+    extractOddItems([1,2,3,4,5]); [2, 4] 
+    </pre>
+            </div>
+            <div class="accordion-content-solution">
+              <p>for loop</p>
+              <pre>function extractOddItems(arr) {
+  var res = [];
+  for (var i = 0; i &lt; arr.length; i++) {
+    if (i % 2 !== 0) {
+      res.push(arr[i]);
+    }
+  }
+  return res;
+}</pre>
+              <p>with filter method</p>
+              <pre>function extractOddItems(arr) {
+  return arr.filter(function(elem, index) {
+    return index % 2 !== 0;
+  });
+}</pre>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-section"><a class="accordion-title" href="#accordion-16">Объединить объекты</a>
+          <div class="accordion-content" id="accordion-16">
+            <div class="accordion-content-info"><a href="http://jscourse.com/task/extend-object-simple">http://jscourse.com/task/extend-object-simple</a>
+              <p>Реализовать функцию extend(obj1, obj2), которая скопирует свойства из объекта obj2 в объект obj1. Функция должна возвращать obj1. Значения одинаковых ключей должны перетирать оригинальные. Пример:</p>
+              <pre> 
+    extend({foo: 'bar', baz: 1}, {foo: true, zoop: 0}); // {foo: true, baz: 1, zoop: 0} 
+    </pre>
+            </div>
+            <div class="accordion-content-solution">
+              <p>for/in loop</p>
+              <pre>function extend(obj1, obj2) {
+  for (var prop in obj2) {
+    obj1[prop] = obj2[prop];
+  }
+  return obj1;
+}</pre>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-section"><a class="accordion-title" href="#accordion-17">Создать объект из массивов данных</a>
+          <div class="accordion-content" id="accordion-17">
+            <div class="accordion-content-info"><a href="http://jscourse.com/task/create-object-from-arrays">http://jscourse.com/task/create-object-from-arrays</a>
+              <p>Реализовать функцию createObject(arrOfKeys, arrOfData), которая принимает аргументами два массива, и возвращает объект, в котором названия ключей это строки из массива arrOfKeys, а значения - элементы из массива arrOfData. В ключ, стоящий на первом месте массива arrOfKeys должно быть записано значение, стоящее на первом месте arrOfData. Если данных меньше, чем ключей, заполняй значения ключей как undefined. Пример работы:</p>
+              <pre> 
+    createObject(['foo'], ['bar']); // {foo: 'bar'}, 
+    createObject(['foo', 'extra'], ['bar']); // {foo: 'bar', extra: undefined} 
+    </pre>
+            </div>
+            <div class="accordion-content-solution">
+              <p>for loop</p>
+              <pre>function createObject(arrOfKeys, arrOfData) {
+  var res = {};
+  for (var i = 0; i &lt; arrOfKeys.length; i++) {
+    res[arrOfKeys[i]] = arrOfData[i];
+  }
+  return res;
+}</pre>
+              <p>with reduce method</p>
+              <pre>function createObject(arrOfKeys, arrOfData) {
+  return arrOfKeys.reduce(function(res, elem, index) {
+    res[arrOfKeys[index]] = arrOfData[index];
+    return res;
+  }, {});
+}</pre>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-section"><a class="accordion-title" href="#accordion-18">Проверить является ли один массив подмножеством второго</a>
+          <div class="accordion-content" id="accordion-18">
+            <div class="accordion-content-info"><a href="http://jscourse.com/task/contains">http://jscourse.com/task/contains</a>
+              <p>Дописать функцию contains(where, what). Если все элементы массива what содержатся в массиве where, функция должна возвращать true. Пустой массив является подмножеством любого массива. Порядок вхождения элементов в массив не имеет значения. Примеры:</p>
+              <pre> 
+    contains([1,2,3], [3,2]); // true 
+    contains([1,2,3], [3,2,1,2,3]); // true 
+    </pre>
+            </div>
+            <div class="accordion-content-solution">
+              <p>for loop</p>
+              <pre>function contains(where, what) {
+  for (var i = 0; i &lt; what.length; i++) {
+    if (where.indexOf(what[i]) === -1)
+      return false;
+  }
+  return true;
+}</pre>
+              <p>with filter method</p>
+              <pre>function contains(where, what) {
+  var result = true;
+  what.filter(function(elem) {
+    if (where.indexOf(elem) === -1)
+      result = false;
+  });
+  return result;
+}</pre>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</body>

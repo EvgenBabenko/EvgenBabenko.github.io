@@ -1,0 +1,172 @@
+{
+  "taskList": [
+    {
+      "taskURL": "http://jscourse.com/task/simple-templater",
+      "name": "Реализовать простейший templater",
+      "task": "Описать функцию templater(templateString, dataObj). Функция, принимает аргументом строку и объект. Заменяет все вхождения подстрок вида ${STRING} значениями из объекта с ключом STRING. Пример использования:",
+      "examples": " \n    templater('${who} ${action} ${what}', { \n      who: 'mama', \n      action: 'mila', \n      what: 'ramu' \n    }); // 'mama mila ramu' \n    ",
+      "solutions": {
+        "": "function templater(templateString, dataObj) {\r\n  var stringToReplace;\r\n  var dataToReplace;\r\n  for (var key in dataObj) {\r\n    stringToReplace = '${' + key + '}';\r\n    dataToReplace = dataObj[key];\r\n    while (templateString.indexOf(stringToReplace) !== -1) {\r\n      templateString = templateString.replace(stringToReplace, dataToReplace);\r\n    }\r\n  }\r\n  return templateString;\r\n}"
+      }
+    },
+    {
+      "taskURL": "http://jscourse.com/task/keeper",
+      "name": "Ключник",
+      "task": "Релизовать функцию createKeeper(), которая возвращает объект с 2 методами put(key, value) и get(key). Метод get(key) должен возвращать данные, которые были сохранены с помощью метода put, если вызывается с тем-же значением key, что и put.Ключами могут быть как объекты, так и примитивы, про NaN не задумываться.Если put был вызван с таким ключом, с которым уже был вызван ранее, старое значение перезатирается новым. Доступ к ключам и значениями должен быть возможен только через методы put и get.",
+      "examples": " \n    var keeper = createKeeper(); \n    var key1 = {}; \n    var key2 = {}; \n    var key1Copy = key1; \n \n    keeper.put(key1, 999) \n    keeper.put(key2, [1, 2, 3]) \n    console.log(keeper.get(key1)); // 999 \n    console.log(keeper.get(key2)); // [1,2,3] \n    console.log(keeper.get(key1Copy)); // 999 \n    console.log(keeper.get({})); // null \n    keeper.put(key1, key2); \n    console.log(keeper.get(key1Copy) === key2); // true \n    ",
+      "solutions": {
+        "": "function createKeeper() {\r\n  var buffer = []; //where even index is a key and odd index is a value\r\n\r\n  return {\r\n    put: function(key, value) {\r\n      if (buffer.indexOf(key) !== -1) {\r\n        buffer[buffer.indexOf(key) + 1] = value;\r\n      } else {\r\n        buffer.push(key, value);\r\n      }\r\n    },\r\n\r\n    get: function(key) {\r\n      if (buffer.indexOf(key) !== -1) {\r\n        return buffer[buffer.indexOf(key) + 1];\r\n      } else {\r\n        return null;\r\n      }\r\n    }\r\n  };\r\n}"
+      }
+    },
+    {
+      "taskURL": "http://jscourse.com/task/compose",
+      "name": "Объединить несколько функций в одну",
+      "task": "Реализовать функцию compose, которая принимает аргументами любое количество функций, и возвращает функцию, которая при вызове вызовет все функции, которые compose получила аргументом.",
+      "examples": " \n    function log1() {console.log(111)}; \n    function log2() {console.log(222)}; \n    function log3() {console.log(333)}; \n    var logAll = compose(log1, log2, log3); \n    logAll(); // 111 \n              // 222 \n              // 333 \n    ",
+      "solutions": {
+        "": "function compose() {\r\n  var args = [].slice.call(arguments);\r\n  return function() {\r\n    args.forEach(function(e) {\r\n      e();\r\n    });\r\n  };\r\n}"
+      }
+    },
+    {
+      "taskURL": "http://jscourse.com/task/array-like-object-to-array",
+      "name": "Создать массив из массивоподобного объекта",
+      "task": "Реализовать функцию toArray(obj), которая принимает аргументом массивоподобный объект (например arguments), и возвращает массив из тех же элементов, которые входили в массивоподобный объект. Пример работы:",
+      "examples": " \n    function someFunc() { \n      var args = toArray(arguments); \n      console.log(arguments.forEach); // undefined, метод есть только у массивов. \n      console.log(args.forEach); // [function], метод есть только у массивов. \n    } \n \n    someFunc(1,2,3,4); \n    ",
+      "solutions": {
+        "for loop": "function toArray(obj) {\r\n  var res = [];\r\n  for (var i = 0; i < obj.length; i++) {\r\n    res.push(obj[i]);\r\n  }\r\n  return res;\r\n}"
+      }
+    },
+    {
+      "taskURL": "http://jscourse.com/task/query-string-to-object",
+      "name": "Преобразовать строку запроса (query string) в объект",
+      "task": "Реализуй функцию queryStringToObject(queryString), которая возвращает объект. Распознавать следующие типы данных: числа, строки, булевы. Помни, что некоторые символы query string могут быть закодированы. Пример работы:",
+      "examples": " \n    queryStringToObject('user=true'); // {user: true} \n    queryStringToObject('user=true&age=29'); // {user: true, age: 29} \n    queryStringToObject('user=true&age=29&name=Evgen'); // {user: true, age: 29, name: 'Evgen'} \n    ",
+      "solutions": {
+        "for loop": "function queryStringToObject(queryString) {\r\n  var pairsKeyValue = queryString.split('&');\r\n  var key;\r\n  var value;\r\n  var res = {};\r\n\r\n  if (!queryString) return res;\r\n\r\n  for (var i = 0; i < pairsKeyValue.length; i++) {\r\n    key = pairsKeyValue[i].split('=')[0];\r\n    value = decodeURIComponent(pairsKeyValue[i].split('=')[1]);\r\n    if (value === 'true') {\r\n      value = true;\r\n    } else if (value === 'false') {\r\n      value = false;\r\n    } else if (!isNaN(value)) {\r\n      value = parseInt(value, 10);\r\n    } else {\r\n      value = value;\r\n    }\r\n    res[key] = value;\r\n  }\r\n  return res;\r\n}"
+      }
+    },
+    {
+      "taskURL": "http://jscourse.com/task/get-unique",
+      "name": "Сформировать список без повторений",
+      "task": "Реализовать функцию getUnique(arr), которая принимает аргументом массив или массивоподоный объект, и возвращает массив таких элементов, которые входят в массив аргумента, и встречаются только раз в массиве результата. Аргумент не должен изменяться. Порядок элементов результирующего массива должен совпадать с порядком, в котором они встречаются в оригинальной структуре.",
+      "examples": " \n    var a = {}; \n    var b = {}; \n    var u = getUnique([a,b,b,a]); \n    console.log(u[0] === a); // true \n    console.log(u[1] === b); // true \n    console.log(u.length === 2); // true \n    ",
+      "solutions": {
+        "for loop": "function getUnique(list) {\r\n  var res = [];\r\n  for (var i = 0; i < list.length; i++) {\r\n    if (res.indexOf(list[i]) === -1) res.push(list[i]);\r\n  }\r\n  return res;\r\n}"
+      }
+    },
+    {
+      "taskURL": "http://jscourse.com/task/fix-object-in-sequence",
+      "name": "Найти и исправить объект в структуре",
+      "task": "Есть структура вида:    [{        delta: 5,        value: 5    }, {        delta: -3,        value: 2    }, {        delta: 5,        value: 7    }, {        delta: 0,        value: 7    }]    Она подчиняется следющему правилу: каждый последующий объект массива содержит объект со свойствами delta и value. delta - разница значений value с предыдущим объектом.    У тебя есть экземпляр структуры, и достоверно известно, что один (и только один) из элементов имеет неверное значение delta и value, и что этот элемент не является ни первым, ни последним. Необходимо написать функцию fixStruct(struct), которая изменяет неверное значение таким образом, чтобы его delta и value снова подчинялись правилу, описанному выше. Пример работы:",
+      "examples": " \n    var struct = [{ \n        delta: 0, \n        value: 1 \n    }, { \n        delta: 0, \n        value: 0 \n    }, { \n        delta: 3, \n        value: 5 \n    }]; \n    console.log(fixStruct(struct)); \n    [{ \n        delta: 0, \n        value: 1 \n    }, { \n        delta: 1, \n        value: 2 \n    }, { \n        delta: 3, \n        value: 5 \n    }] \n    ",
+      "solutions": {
+        "for loop": "function fixStruct(struct) {\r\n  for (var i = 1; i < struct.length - 1; i++) { //not first and last\r\n    if (struct[i].delta !== struct[i].value - struct[i - 1].value) {\r\n      break;\r\n    }\r\n  }\r\n  struct[i].value = struct[i + 1].value - struct[i + 1].delta;\r\n  struct[i].delta = struct[i].value - struct[i - 1].value;\r\n  return struct;\r\n}"
+      }
+    },
+    {
+      "taskURL": "http://jscourse.com/task/incapsulated-counter",
+      "name": "Реализовать счетчик, сокрыв детали реализации",
+      "task": "Написать функцию createSummator(initialValue), с опциональным (необязательным) первым параметром, который является точкой отчета счетчика. Если аргумент initialValue не передан, то отчет начинается с 0. При каждом вызове функция возвращает объект с методами inc(num), dec(num), get(). Объектов, которые возвращает функция createSummator(initialValue), может быть любое количество. \n \n    Реализация должна позволять манипуляции со значением счетчика только с использованием этих методов. \n \n    Вызов метода inc(num) увеличивает значение счетчика на значение аргумента num. Если метод вызван без аргумента, то значение счетчика увеличивается на 1. \n    Вызов метода dec(num) уменьшает значение счетчика на значение num, если метод вызван с аргументом. Если метод вызван без аргумента, то значение счетчика уменьшается на 1. \n    Вызов метода get() возвращает текущее значение счетчика. \n    Примеры использования:",
+      "examples": " \n    var s1 = createSummator(); \n    s1.inc(); \n    s1.inc(); \n    s1.inc(); \n    console.log(s1.get()); // 3 \n \n    var s2 = createSummator(10); \n    s2.inc(2); \n    s2.inc(3); \n    s2.inc(4); \n    console.log(s2.get()); // 19 \n \n    var s3 = createSummator(5); \n    s3.inc(5); \n    s3.dec(10); \n    console.log(s3.get()); // 0 \n    ",
+      "solutions": {
+        "": "function createSummator(initialValue) {\r\n  initialValue = initialValue || 0;\r\n  var result = initialValue;\r\n  return {\r\n    inc: function(num) {\r\n      num = num || 1;\r\n      return result += num;\r\n    },\r\n\r\n    dec: function(num) {\r\n      num = num || 1;\r\n      return result -= num;\r\n    },\r\n\r\n    get: function() {\r\n      return result;\r\n    }\r\n  };\r\n}"
+      }
+    },
+    {
+      "taskURL": "http://jscourse.com/task/summ-all-arguments",
+      "name": "Сложить все аргументы",
+      "task": "Реализуй функцию sum(), которая суммирует все передаваемые ей аргументы. В аргументах могут быть любые данные. Пример работы:",
+      "examples": " \n    sum(10, 20); // 30 \n    ",
+      "solutions": {
+        "slice and call method": "function sum() {\r\n  args = [].slice.call(arguments);\r\n  return args.reduce(function(res, elem) {\r\n    return res + elem;\r\n  });\r\n}"
+      }
+    },
+    {
+      "taskURL": "http://jscourse.com/task/is-in-array",
+      "name": "Проверить вхождение элементов в массив",
+      "task": "Реализовать функцию isInArray , проверяющую вхождение элементов в массив. Первый аргумент функции - массив, последующие - элементы, вхождение в массив которых проверяется. Функция возвращает true, если все аргументы, кроме первого являются элементами массива. Пример работы:",
+      "examples": " \n    isInArray([1], 1); // true \n    isInArray([1], 1, 2); // false \n    isInArray([1, 2], 1, 2); // true \n    ",
+      "solutions": {
+        "for loop": "function isInArray(arr) {\r\n  for (var i = 1; i < arguments.length; i++) {\r\n    if (arr.indexOf(arguments[i]) === -1) return false;\r\n  }\r\n  return true;\r\n}"
+      }
+    },
+    {
+      "taskURL": "http://jscourse.com/task/get-name-from-path",
+      "name": "Получить название файла или папки из пути",
+      "task": "Реализовать функцию getName(path), которая возвращает название папки или файла из строки пути. Разделители сегментов путей - юниксовые ('/'). Примеры путей:",
+      "examples": " \n    '/users/dmitry/Dropbox/' //Dropbox \n    '/users/dmitry/Dropbox' // Dropbox \n    '/users/dmitry/Dropbox/main.js' // main.js \n    ",
+      "solutions": {
+        "for loop": "function getName(path) {\r\n  var pathSequence = path.split('/');\r\n  for (var i = pathSequence.length - 1; i > 0;) {\r\n    if (pathSequence[i] === '') {\r\n      i--;\r\n    } else {\r\n      return pathSequence[i];\r\n    }\r\n  }\r\n}"
+      }
+    },
+    {
+      "taskURL": "http://jscourse.com/task/exec-each-function-in-array",
+      "name": "Выполнить функции из массива",
+      "task": "Релизовать функцию execFunctions(arrOfFunctions), которая получает аргументом массив функций arrOfFunctions, и возвращает массив, где каждый элемент это результат вызова функции стоящей на индексе, что и элемент. Пример работы:",
+      "examples": " \n    function return10() { \n      return 10; \n    } \n \n    function returnUser() { \n      return {name: 'Evgen'}; \n    } \n \n    function empty() {} \n    execFunctions([return10, returnUser, empty]); // [10, {name: 'Evgen'}, undefined] \n    ",
+      "solutions": {
+        "map method": "function execFunctions(arrOfFunctions) {\r\n  return arrOfFunctions.map(function(elem) {\r\n    return elem();\r\n  });\r\n}"
+      }
+    },
+    {
+      "taskURL": "http://jscourse.com/task/every",
+      "name": "Проверить каждый элемент массива на удовлетворение условию",
+      "task": "Реализовать функцию every(arr, func), которая принимает аргументами массив arr и функцию func. Возвращает true, если функция func вернет для каждого элемента массива true. В функцию func нужно передавать аргументами элемет массива, индекс элемента массива и сам массив. Пример как должен работать код:",
+      "examples": " \n    Проверка на то, что все элементы массива - строки \n      every(['mama', 'mila', 'ramu'], function (arrayItem) { \n        return typeof arrayItem === 'string'; \n      });; // true \n    Проверка на то, что все элементы массива больше своих индексов \n      every([4, 8, 1], function (arrayItem, itemIndex) { \n        return arrayItem > itemIndex \n      });; // false \n    ",
+      "solutions": {
+        "for loop": "function every(arr, func) {\r\n  for (var i = 1; i < arr.length; i++) {\r\n    if (func(arr[i], i, arr) !== true) return false;\r\n  }\r\n  return true;\r\n}",
+        "with filter method": "function every(arr, func) {\r\n  var res = true;\r\n  arr.filter(function(e, i, array) {\r\n    if (func(e, i, array) !== true) res = false;\r\n  });\r\n  return res;\r\n}"
+      }
+    },
+    {
+      "taskURL": "http://jscourse.com/task/summ-numbers-by-condition",
+      "name": "Просуммировать числа из массива, которые больше 100",
+      "task": "Реализовать функцию sumOnly100Plus, которая принимает аргументом массив, и возвращает сумму всех чисел массива, которые больше 100. В массиве могут быть не только числовые данные, их никак не учитывать. Пример работы:",
+      "examples": "\n    sumOnly100Plus([150, '200', ' ', 30, 300]); // 450\n    ",
+      "solutions": {
+        "for loop": "function sumOnly100Plus(arr) {\r\n  var result = 0;\r\n  for (var i = 0; i < arr.length; i++) {\r\n    if (typeof arr[i] === 'number' && arr[i] > 100) {\r\n      result += arr[i];\r\n    }\r\n  }\r\n  return result;\r\n}",
+        "with reduce method": "function sumOnly100Plus(arr) {\r\n  return arr.reduce(function(accu, current) {\r\n    if (typeof current === 'number' && current > 100) {\r\n      return accu + current;\r\n    }\r\n    return accu;\r\n  }, 0);\r\n}",
+        "with reduce and filter method": "function sumOnly100Plus(arr) {\r\n  return arr.filter(function(value) {\r\n      return value > 100 && typeof value === 'number';\r\n    })\r\n    .reduce(function(res, value) {\r\n      return res + value;\r\n    }, 0);\r\n}"
+      }
+    },
+    {
+      "taskURL": "http://jscourse.com/task/extract-odd-items",
+      "name": "Отфильтровать элементы массива с нечетным индексом",
+      "task": "Реализовать функцию extractOddItems(arr), которая возвращает новый массив, в котором содержатся только те элементы, которые обладали нечетным индексом в массиве, переданном в качестве аргумента. Пример работы:",
+      "examples": " \n    extractOddItems([0,1,0,1,0,1]); // [1,1,1], \n    extractOddItems([1,2,3,4,5]); [2, 4] \n    ",
+      "solutions": {
+        "for loop": "function extractOddItems(arr) {\r\n  var res = [];\r\n  for (var i = 0; i < arr.length; i++) {\r\n    if (i % 2 !== 0) {\r\n      res.push(arr[i]);\r\n    }\r\n  }\r\n  return res;\r\n}",
+        "with filter method": "function extractOddItems(arr) {\r\n  return arr.filter(function(elem, index) {\r\n    return index % 2 !== 0;\r\n  });\r\n}"
+      }
+    },
+    {
+      "taskURL": "http://jscourse.com/task/extend-object-simple",
+      "name": "Объединить объекты",
+      "task": "Реализовать функцию extend(obj1, obj2), которая скопирует свойства из объекта obj2 в объект obj1. Функция должна возвращать obj1. Значения одинаковых ключей должны перетирать оригинальные. Пример:",
+      "examples": " \n    extend({foo: 'bar', baz: 1}, {foo: true, zoop: 0}); // {foo: true, baz: 1, zoop: 0} \n    ",
+      "solutions": {
+        "for/in loop": "function extend(obj1, obj2) {\r\n  for (var prop in obj2) {\r\n    obj1[prop] = obj2[prop];\r\n  }\r\n  return obj1;\r\n}"
+      }
+    },
+    {
+      "taskURL": "http://jscourse.com/task/create-object-from-arrays",
+      "name": "Создать объект из массивов данных",
+      "task": "Реализовать функцию createObject(arrOfKeys, arrOfData), которая принимает аргументами два массива, и возвращает объект, в котором названия ключей это строки из массива arrOfKeys, а значения - элементы из массива arrOfData. В ключ, стоящий на первом месте массива arrOfKeys должно быть записано значение, стоящее на первом месте arrOfData. Если данных меньше, чем ключей, заполняй значения ключей как undefined. Пример работы:",
+      "examples": " \n    createObject(['foo'], ['bar']); // {foo: 'bar'}, \n    createObject(['foo', 'extra'], ['bar']); // {foo: 'bar', extra: undefined} \n    ",
+      "solutions": {
+        "for loop": "function createObject(arrOfKeys, arrOfData) {\r\n  var res = {};\r\n  for (var i = 0; i < arrOfKeys.length; i++) {\r\n    res[arrOfKeys[i]] = arrOfData[i];\r\n  }\r\n  return res;\r\n}",
+        "with reduce method": "function createObject(arrOfKeys, arrOfData) {\r\n  return arrOfKeys.reduce(function(res, elem, index) {\r\n    res[arrOfKeys[index]] = arrOfData[index];\r\n    return res;\r\n  }, {});\r\n}"
+      }
+    },
+    {
+      "taskURL": "http://jscourse.com/task/contains",
+      "name": "Проверить является ли один массив подмножеством второго",
+      "task": "Дописать функцию contains(where, what). Если все элементы массива what содержатся в массиве where, функция должна возвращать true. Пустой массив является подмножеством любого массива. Порядок вхождения элементов в массив не имеет значения. Примеры:",
+      "examples": " \n    contains([1,2,3], [3,2]); // true \n    contains([1,2,3], [3,2,1,2,3]); // true \n    ",
+      "solutions": {
+        "for loop": "function contains(where, what) {\r\n  for (var i = 0; i < what.length; i++) {\r\n    if (where.indexOf(what[i]) === -1)\r\n      return false;\r\n  }\r\n  return true;\r\n}",
+        "with filter method": "function contains(where, what) {\r\n  var result = true;\r\n  what.filter(function(elem) {\r\n    if (where.indexOf(elem) === -1)\r\n      result = false;\r\n  });\r\n  return result;\r\n}"
+      }
+    }
+  ]
+}

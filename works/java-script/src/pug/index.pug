@@ -1,0 +1,38 @@
+doctype html
+html(lang='en')
+  head
+    title pageTitle
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+    link(href='css/main.css', rel='stylesheet')
+    link(href="https://fonts.googleapis.com/css?family=PT+Sans:400,700" rel="stylesheet")
+    script(src='js/main.js')
+
+body
+  //- link from the JSON file, which is connected to gulpfile
+  - var arrOfTasks= taskList 
+
+  mixin accordionSection(task, number)
+    div.accordion-section
+      a(class='accordion-title', href= '#accordion-' + number)= task.name
+      div(class='accordion-content', id= 'accordion-' + number)
+        div.accordion-content-info
+          a(href= task.taskURL)= task.taskURL
+          p= task.task
+          pre= task.examples
+          //- each example in task.examples
+          //-   pre= example
+        div.accordion-content-solution
+          - for (var solution in task.solutions) {
+            p= solution
+            pre= task.solutions[solution]
+          - }
+
+  //- content
+  div.content
+    div.title Java Script
+    div.accordion
+      - for (var i = 0; i < arrOfTasks.length; i++){
+        +accordionSection(arrOfTasks[i], i + 1)
+      - } 
+  //- content end

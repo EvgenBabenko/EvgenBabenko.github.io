@@ -1,0 +1,70 @@
+code {
+	padding: 2px 4px;
+  font-size: 90%;
+  color: #c7254e;
+  background-color: #f9f2f4;
+  border-radius: 4px;
+  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+pre {
+	font-size: 90%;
+	font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+	white-space: pre-wrap;
+}
+
+.content {
+	width: $width;
+	margin: 1.5rem auto;
+
+	@include MQ($M) {
+		width: 100%;
+	}
+}
+
+.title {
+	padding: 1.5rem;
+	background-color: lighten(#333, 70%);
+	text-align: center;
+	font-size: 2rem;
+}
+
+.accordion {
+	background-color: #f7f7f7;
+	line-height: 1.45;
+}
+
+.accordion-title {
+	display: inline-block;
+	width: 100%;
+	padding: 1.5rem;
+
+	color: #fff;
+	text-decoration: none;
+
+	background-color: lighten(#333, 5%);
+	border-bottom: 1px solid #1a1a1a;
+
+	&:hover,
+	&.active {
+		background-color: lighten(#333, 15%);
+	}
+}
+
+.accordion-content {
+	display: none;
+}
+
+.accordion-content-info {
+	padding:1.5rem;
+	background-color: lighten(#333, 70%);
+}
+
+.accordion-content-solution {
+	padding: 1.5rem;
+
+	p {
+		padding: 1rem;
+    background-color: lighten(#333, 70%);
+	}
+}
