@@ -12,35 +12,35 @@ var gulp 				= require('gulp'),
 		wait				= require('gulp-wait');
 
 var path = {
-		build: { //put files to
-			html: '',
-			css: 'css/',
-			img: 'img/',
-			fonts: 'fonts/',
-			js: 'js/'
-		},
+			build: { //put files to
+				html: '',
+				css: 'css/',
+				img: 'img/',
+				fonts: 'fonts/',
+				js: 'js/'
+			},
 
-		src: { //get files from 
-			html: 'src/*.html',
-			sass: 'src/style/main.+(scss|sass)',
-			img: [
-				'src/img/**/*.*',
-				'!src/img/icon/*.*'
-			],
-			fonts: 'src/fonts/*.*',
-			js: 'src/js/main.js'
-		},
+			src: { //get files from 
+				html: 'src/*.html',
+				sass: 'src/style/main.+(scss|sass)',
+				img: [
+					'src/img/**/*.*',
+					'!src/img/icon/*.*'
+				],
+				fonts: 'src/fonts/*.*',
+				js: 'src/js/main.js'
+			},
 
-		watch: {
-			html: [
-				'src/*.html',
-				'src/template/*.html'
-			],
-			sass: 'src/style/**/*.+(scss|sass)',
-			img: 'src/img/**/*.*',
-			fonts: 'src/fonts/*.*',
-			js: 'src/js/**/*.js'
-		}
+			watch: {
+				html: [
+					'src/*.html',
+					'src/template/*.html'
+				],
+				sass: 'src/style/**/*.+(scss|sass)',
+				img: 'src/img/**/*.*',
+				fonts: 'src/fonts/*.*',
+				js: 'src/js/**/*.js'
+			}
 };
 
 var config = {
