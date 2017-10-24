@@ -2,7 +2,7 @@
 
 
 //onclick new blank
-var followTo = document.querySelector('.exit');
+var followTo = document.querySelector('.followTo');
 followTo.onclick = function() {
   window.open();
 };
@@ -49,8 +49,10 @@ function animationSelector(value) {
 
   if (value === 0) {
     yt_player.style.opacity = '1';
+    yt_player.style.pointerEvents = 'all';
     internals.style.opacity = '0';
     internals.style.transition = '0s';
+    highlights.style.opacity = '1';
     stopRain();
 
     //YTPlayer state
@@ -59,12 +61,13 @@ function animationSelector(value) {
     if (player.getPlayerState() === 2) {
       player.playVideo();
     }
-    highlights.style.opacity = '1';
 
   } else if (value >= 49 && value < 51) {
     internals.style.opacity = '0';
     internals.style.transition = '0s';
     yt_player.style.opacity = '0';
+    yt_player.style.pointerEvents = 'none';
+    highlights.style.opacity = '0';
     flashLight();
     stopRain();
 
@@ -72,27 +75,35 @@ function animationSelector(value) {
     internals.style.opacity = '0';
     internals.style.transition = '0s';
     yt_player.style.opacity = '0';
+    yt_player.style.pointerEvents = 'none';
     text.style.backgroundImage = 'url(../img/text_2.png)';
+    highlights.style.opacity = '0';
     startRain();
 
   } else if (value >= 37 && value < 78) {
     internals.style.opacity = '0';
     internals.style.transition = '0s';
     yt_player.style.opacity = '0';
+    yt_player.style.pointerEvents = 'none';
     text.style.backgroundImage = 'url(../img/text_3.png)';
+    highlights.style.opacity = '0';
     stopRain();
 
   } else if (value >= 78 && value < 100) {
     yt_player.style.opacity = '0';
+    yt_player.style.pointerEvents = 'none';
     text.style.backgroundImage = 'url(../img/text_4.png)';
     internals.style.opacity = '0';
     internals.style.transition = '0s';
+    highlights.style.opacity = '0';
     stopRain();
 
   } else if (value === 100) {
     yt_player.style.opacity = '0';
+    yt_player.style.pointerEvents = 'none';
     internals.style.opacity = '1';
     internals.style.transition = '1s';
+    highlights.style.opacity = '0';
     stopRain();
     setTimeout(function() {
       highlightInternals();
@@ -104,6 +115,7 @@ function animationSelector(value) {
     highlights.style.opacity = '0';
     text.style.backgroundImage = 'url(../img/text_1.png)';
     yt_player.style.opacity = '0';
+    yt_player.style.pointerEvents = 'none';
     player.pauseVideo();
     stopRain();
   }
@@ -123,7 +135,6 @@ function flashLight() {
 
   if (!flashStatus) {
     flashStatus = true;
-    // console.log(1);
     newFlash();
   } else {
     return;
@@ -142,7 +153,6 @@ function flashLight() {
         flash.style.opacity = '0';
         flashStatus = false;
         clearInterval(flashLightID);
-        // console.log('flash.style.transform', flash.style.transform);
       } else {
         intialScale += 0.1;
         flash.style.transform = 'scale(' + intialScale + ',' + intialScale + ')';
@@ -182,19 +192,15 @@ function highlightInternals() {
 
 var raining = false;
 var createDropID;
-var dropDownID;
-// var slipDownID;
+var slipDownID;
 var stopRainID;
-var slipDownDelayId;
 var tag = document.querySelector('.rain');
 
 function stopRain() {
   if (raining) {
     clearInterval(createDropID);
-    clearInterval(dropDownID);
     clearTimeout(stopRainID);
-    clearTimeout(slipDownDelayId);
-    // clearInterval(slipDownID);
+    clearInterval(slipDownID);
     tag.style.opacity = '0';
     while (tag.firstChild) {
       tag.removeChild(tag.firstChild);
@@ -234,7 +240,7 @@ function createDrop() {
 
   var duration = random(10, 60);
   var translateX = random(0, 470);
-  var translateY = random(0, 230);
+  var translateY = random(0, 200);
   var skewX = 0;
   var skewY = 0;
   var scaleX = random(0.8, 1.2) + 5;
@@ -256,7 +262,6 @@ function createDrop() {
       scaleY = scaleX;
       opacity += 0.1;
       rainDrop.style.opacity = opacity;
-      // rainDrop.style.transform = 'scale(' + scaleX + ',' + scaleY + ')';
       rainDrop.style.transform = 'matrix(' + scaleX + ',' + skewY + ',' + skewX + ',' + scaleY + ',' + translateX + ',' + translateY + ')';
     }
   }
@@ -271,17 +276,12 @@ function createDrop() {
   function slipDown() {
     if (translateY >= 255) {
       console.log('translateY >= 255', translateY >= 255, translateY);
-      // rainDrop.style.display = 'none';
-      // rainDrop.remove();
       // clearTimeout(slipDownDelayId);
       clearInterval(slipDownID);
     } else {
       console.log('translateY', translateY);
       translateY += 2;
-      // scaleX -= 0.001;
-      // rainDrop.style.transform = 'translateY(' + translateY + ')';
       rainDrop.style.transform = 'matrix(' + scaleX + ',' + skewY + ',' + skewX + ',' + scaleY + ',' + translateX + ',' + translateY + ')';
-      // rainDrop.style.top = top + 'px';
     }
   }
 }
@@ -346,17 +346,25 @@ function onPlayerReady(event) {
 
   let phone = document.querySelector('.phone-wrapper');
   let slider = document.querySelector('.slider-wrapper');
-  var top = 260;
-  // 120
+  var topPhone = 260;
+  phone.style.top = topPhone + 'px';
 
-  var slidingID = setInterval(sliding, 0);
+  var topslider = 366;
+  slider.style.top = topslider + 'px';
 
-  function sliding() {
-    if (top <= 14) {
+
+  var slidingPhoneID = setInterval(slidingPhone, 0);
+  var slidingSliderID;
+
+  setTimeout(function() {
+    slidingSliderID = setInterval(slidingSlider, 0);
+  }, 1000);
+
+  function slidingPhone() {
+    if (topPhone <= 14) {
       phone.style.top = 14 + 'px';
-      slider.style.top = 120 + 'px';
 
-      clearInterval(slidingID);
+      clearInterval(slidingPhoneID);
       event.target.pauseVideo();
       event.target.mute();
 
@@ -373,9 +381,20 @@ function onPlayerReady(event) {
       setTimeout(showBlock, 2000, document.querySelector('.cta'));
 
     } else {
-      top -= 3;
-      phone.style.top = top + 'px';
-      slider.style.top = top + 'px';
+      topPhone -= 3;
+      phone.style.top = topPhone + 'px';
+    }
+  }
+
+  function slidingSlider() {
+    if (topslider <= 120) {
+      slider.style.top = 120 + 'px';
+
+      clearInterval(slidingSliderID);
+
+    } else {
+      topslider -= 3;
+      slider.style.top = topslider + 'px';
     }
   }
 

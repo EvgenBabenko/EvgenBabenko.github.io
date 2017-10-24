@@ -9,13 +9,11 @@ function init() {
     iframe.style.width = '970px';
     iframe.style.height = '250px';
     iframe.style.border = 'none';
-    iframe.src = '../index.html';
+    iframe.src = 'https://evgenbabenko.github.io/works/ad/build/index.html';
     iframe.style.display = 'block';
     iframe.style.position = 'absolute';
     iframe.style.top = '20px';
     iframe.style.left = '50px';
-    // iframe.style.zIndex = '9999';
-
 
     document.body.appendChild(iframe);
   }
