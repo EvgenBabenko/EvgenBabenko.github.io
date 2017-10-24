@@ -255,16 +255,25 @@ $height: 250px;
   background: #d3d3d3;
   -webkit-appearance: none;
   outline: none;
-}
 
-.slider::-webkit-slider-thumb {
-  width: 20px;
-  height: 20px;
+  &::-webkit-slider-thumb {
+    width: 20px;
+    height: 20px;
 
-  -webkit-appearance: none;
-  border-radius: 50%;
-  background: black;
-  cursor: move;
+    -webkit-appearance: none;
+    border-radius: 50%;
+    background: black;
+    cursor: move;
+  }
+
+  &::-moz-range-thumb {
+      width: 20px;
+      height: 20px;
+
+      border-radius: 50%;
+      background: black;
+      cursor: move;
+    }
 }
 
 .followTo {
