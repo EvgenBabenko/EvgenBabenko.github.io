@@ -1,0 +1,311 @@
+a,
+abbr,
+acronym,
+address,
+applet,
+article,
+aside,
+audio,
+b,
+big,
+blockquote,
+body,
+canvas,
+caption,
+center,
+cite,
+code,
+dd,
+del,
+details,
+dfn,
+div,
+dl,
+dt,
+em,
+embed,
+fieldset,
+figcaption,
+figure,
+footer,
+form,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+header,
+hgroup,
+html,
+i,
+iframe,
+img,
+ins,
+kbd,
+label,
+legend,
+li,
+mark,
+menu,
+nav,
+object,
+ol,
+output,
+p,
+pre,
+q,
+ruby,
+s,
+samp,
+section,
+small,
+span,
+strike,
+strong,
+sub,
+summary,
+sup,
+table,
+tbody,
+td,
+tfoot,
+th,
+thead,
+time,
+tr,
+tt,
+u,
+ul,
+var,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline
+}
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block
+}
+ol,
+ul {
+  list-style: none
+}
+blockquote,
+q {
+  quotes: none
+}
+blockquote:after,
+blockquote:before,
+q:after,
+q:before {
+  content: '';
+  content: none
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0
+}
+* {
+  box-sizing: border-box
+}
+html {
+  font-size: 62.5%
+}
+body {
+  line-height: 1;
+  font-family: sans-serif;
+  font-size: 1.1rem
+}
+.main {
+  position: relative;
+  width: 970px;
+  height: 250px;
+  background-image: url(../img/loading.jpg);
+  border: 1px solid #000
+}
+.close {
+  position: absolute;
+  right: 0;
+  cursor: pointer
+}
+.close span {
+  position: relative;
+  top: -9px;
+  left: 2px;
+  text-decoration: underline
+}
+.full {
+  position: absolute;
+  width: 970px;
+  height: 250px;
+  transition: .3s ease;
+  pointer-events: none
+}
+.logo {
+  background-image: url(../img/logo.png)
+}
+.text {
+  opacity: 0
+}
+.text-slider {
+  background-image: url(../img/slider_text.png);
+  opacity: 0;
+  transition: 1s ease
+}
+.cta {
+  background-image: url(../img/cta.png);
+  opacity: 0;
+  transition: 1s ease
+}
+.phone-wrapper {
+  position: relative;
+  top: 260px;
+  left: 268px
+}
+.phone-sprite {
+  position: absolute;
+  width: 514px;
+  height: 221px;
+  background-image: url(../img/phone_sprite.png);
+  background-position-x: 0;
+  background-position-y: 0
+}
+#yt-player {
+  position: absolute;
+  top: 9px;
+  left: 77px
+}
+.highlights {
+  background-image: url(../img/970x250_highlights.png);
+  top: -15px;
+  left: -292px;
+  z-index: 1;
+  opacity: 1;
+  transition: none
+}
+.internals {
+  width: 970px;
+  height: 250px;
+  background-image: url(../img/internals.png);
+  opacity: 0;
+  position: absolute;
+  left: -24px;
+  pointer-events: none
+}
+.frame {
+  width: 970px;
+  height: 250px;
+  background-image: url(../img/internals_frame.png);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1
+}
+.card-highlight-wrapper {
+  width: 50px;
+  height: 40px;
+  position: absolute;
+  top: 156px;
+  left: 371px;
+  z-index: 0;
+  overflow: hidden
+}
+.card-highlight {
+  background-image: url(../img/card_highlight.png);
+  width: 140px;
+  height: 108px;
+  position: absolute;
+  top: -37px;
+  left: -150px;
+  transform: rotate(-20deg)
+}
+.slider-wrapper {
+  position: absolute;
+  top: 366px;
+  right: 75px;
+  transform: rotate(90deg);
+  -webkit-appearance: none
+}
+.slider {
+  -webkit-appearance: none;
+  width: 200px;
+  height: 1px;
+  background: #d3d3d3;
+  outline: 0
+}
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #000;
+  cursor: move
+}
+.exit {
+  background-color: grey;
+  width: 970px;
+  height: 250px;
+  position: absolute;
+  top: -15px;
+  left: -290px;
+  opacity: 0;
+  cursor: pointer
+}
+.flash {
+  position: absolute;
+  background-image: url(../img/flash.png);
+  top: -66px;
+  left: 217px;
+  width: 299px;
+  height: 299px;
+  opacity: 0;
+  pointer-events: none
+}
+.rain {
+  position: absolute;
+  top: 10px;
+  left: 290px;
+  pointer-events: none;
+  transition: 1s ease
+}
+.raindrop_1 {
+  position: absolute;
+  width: 30px;
+  height: 28px;
+  background-color: red;
+  background-image: url(../img/raindrop_1.png)
+}
+.raindrop_2 {
+  position: absolute;
+  width: 15px;
+  height: 23px;
+  background-color: #ff0;
+  background-image: url(../img/raindrop_2.png)
+}
+.raindrop_3 {
+  position: absolute;
+  width: 22px;
+  height: 19px;
+  background-color: #00f;
+  background-image: url(../img/raindrop_3.png)
+}
+.raindrop_4 {
+  position: absolute;
+  width: 15px;
+  height: 24px;
+  background-color: #000;
+  background-image: url(../img/raindrop_4.png)
+}
