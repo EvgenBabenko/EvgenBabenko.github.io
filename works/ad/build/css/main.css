@@ -294,27 +294,23 @@ body {
   position: absolute;
   width: 30px;
   height: 28px;
-  background-color: red;
   background-image: url(../img/raindrop_1.png)
 }
 .raindrop_2 {
   position: absolute;
   width: 15px;
   height: 23px;
-  background-color: #ff0;
   background-image: url(../img/raindrop_2.png)
 }
 .raindrop_3 {
   position: absolute;
   width: 22px;
   height: 19px;
-  background-color: #00f;
   background-image: url(../img/raindrop_3.png)
 }
 .raindrop_4 {
   position: absolute;
   width: 15px;
   height: 24px;
-  background-color: #000;
   background-image: url(../img/raindrop_4.png)
 }

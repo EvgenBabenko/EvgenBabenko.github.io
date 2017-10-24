@@ -3,6 +3,13 @@
 function init() {
   'use strict';
 
+  if (document.readyState === 'complete') {
+    ready(); 
+  } else {
+    document.addEventListener("DOMContentLoaded", ready);
+  }
+
+
   function ready() {
     let iframe = document.createElement('iframe');
   
@@ -17,8 +24,6 @@ function init() {
 
     document.body.appendChild(iframe);
   }
-
-  document.addEventListener("DOMContentLoaded", ready);
 }
 
 init();
