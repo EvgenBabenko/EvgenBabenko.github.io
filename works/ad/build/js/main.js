@@ -76,7 +76,7 @@ function animationSelector(value) {
     internals.style.transition = '0s';
     yt_player.style.opacity = '0';
     yt_player.style.pointerEvents = 'none';
-    text.style.backgroundImage = 'url(../img/text_2.png)';
+    text.style.backgroundImage = 'url(img/text_2.png)';
     highlights.style.opacity = '0';
     startRain();
 
@@ -85,14 +85,14 @@ function animationSelector(value) {
     internals.style.transition = '0s';
     yt_player.style.opacity = '0';
     yt_player.style.pointerEvents = 'none';
-    text.style.backgroundImage = 'url(../img/text_3.png)';
+    text.style.backgroundImage = 'url(img/text_3.png)';
     highlights.style.opacity = '0';
     stopRain();
 
   } else if (value >= 78 && value < 100) {
     yt_player.style.opacity = '0';
     yt_player.style.pointerEvents = 'none';
-    text.style.backgroundImage = 'url(../img/text_4.png)';
+    text.style.backgroundImage = 'url(img/text_4.png)';
     internals.style.opacity = '0';
     internals.style.transition = '0s';
     highlights.style.opacity = '0';
@@ -113,7 +113,7 @@ function animationSelector(value) {
     internals.style.opacity = '0';
     internals.style.transition = '0s';
     highlights.style.opacity = '0';
-    text.style.backgroundImage = 'url(../img/text_1.png)';
+    text.style.backgroundImage = 'url(img/text_1.png)';
     yt_player.style.opacity = '0';
     yt_player.style.pointerEvents = 'none';
     player.pauseVideo();
@@ -374,7 +374,7 @@ function onPlayerReady(event) {
 
       var text = document.querySelector('.text');
       text.style.opacity = '1';
-      text.style.backgroundImage = 'url(../img/text_1.png)';
+      text.style.backgroundImage = 'url(img/text_1.png)';
 
       setTimeout(showBlock, 1000, document.querySelector('.text-slider'));
 
