@@ -9,7 +9,7 @@ function init() {
     iframe.style.width = '970px';
     iframe.style.height = '250px';
     iframe.style.border = 'none';
-    iframe.src = 'build/index.html';
+    iframe.src = '../index.html';
     iframe.style.display = 'block';
     iframe.style.position = 'absolute';
     iframe.style.top = '20px';
