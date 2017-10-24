@@ -29,7 +29,7 @@ var path = {
       '!src/img/phone/*.*'
     ],
     fonts: 'src/fonts/*.*',
-    js: 'src/js/main.js'
+    js: 'src/js/*.js'
   },
 
   watch: {
