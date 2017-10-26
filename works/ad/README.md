@@ -10,14 +10,14 @@ https://evgenbabenko.github.io/works/ad/build/index.html
 
 
 2.Second way - in developer tools (F12) -> tab Console -> copy/paste that code
-
+```
 var tag = document.createElement('script');
 tag.src = 'https://evgenbabenko.github.io/works/ad/build/js/init.js';
 document.body.appendChild(tag);
-
+```
 
 3.The third way - in developer tools (F12) -> tab Console -> copy/paste that code
-
+```
 function init() {
   'use strict';
 
@@ -43,3 +43,4 @@ function init() {
   }
 }
 init();
+```
