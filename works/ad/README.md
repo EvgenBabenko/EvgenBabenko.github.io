@@ -1,9 +1,5 @@
 # Adverting
-
-
-//-------------------------------------------
-//---------------USAGE
-//-------------------------------------------
+---------------USAGE---------------
 
 1.First way - on link
 https://evgenbabenko.github.io/works/ad/build/index.html
