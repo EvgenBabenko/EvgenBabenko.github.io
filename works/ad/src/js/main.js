@@ -1,1 +1,0 @@
-//= ./partials/ad.js
