@@ -24,7 +24,7 @@ let data = [
         linkCode: 'https://github.com/EvgenBabenko/EvgenBabenko.github.io/tree/master/works/timer',
         // linkTemplate: null,
         description: 'Several timers could be inserted in a page. OOP style',
-        tags: ['JavaScript', 'HTML/CSS', 'Sass', 'Flexbox']
+        tags: ['JavaScript']
     },
     {
         title: 'This Portfolio',
