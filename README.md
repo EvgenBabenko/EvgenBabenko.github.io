@@ -1,5 +1,3 @@
 # EvgenBabenko.github.io
 
-<a href="https://evgenbabenko.github.io/">Portfolio</a>
-
-by Evgeny Babenko
+[Portfolio](https://evgenbabenko.github.io/) by Evgeny Babenko

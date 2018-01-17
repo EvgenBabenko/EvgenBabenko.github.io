@@ -28,7 +28,7 @@ var path = {
 					'!src/img/icon/*.*'
 				],
 				fonts: 'src/fonts/*.*',
-				js: 'src/js/main.js'
+				js: 'src/js/*.js'
 			},
 
 			watch: {
@@ -93,8 +93,8 @@ gulp.task('img', function() {
 
 gulp.task('js', function() {
 	gulp.src(path.src.js)
-	.pipe(rigger())
-	.pipe(uglify())
+	// .pipe(rigger())
+	// .pipe(uglify())
 	.pipe(gulp.dest(path.build.js))
 	.pipe(browserSync.reload({stream: true}));
 });

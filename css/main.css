@@ -136,7 +136,7 @@ a {
 a:hover {
   color: #0c487b
 }
-.grid-itm,
+.gallery-itm,
 .header {
   border: 1px solid grey;
   border-radius: .375rem
@@ -171,51 +171,69 @@ a:hover {
 .header-content .fa-github {
   font-size: 1.625rem
 }
-.grid {
+.gallery {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   margin-top: .75rem;
   margin-bottom: .75rem
 }
-.grid-itm {
+.gallery-itm {
   flex: 0 1 100%;
   margin-bottom: .75rem
 }
-.grid-itm:last-child {
+.gallery-itm:last-child {
   margin-bottom: 0
 }
 @media (min-width:576px) {
-  .grid {
+  .gallery {
     margin-top: 1.5rem
   }
-  .grid-itm {
+  .gallery-itm {
     flex: 0 1 calc(50% - .625rem);
     margin-bottom: 1.5rem
   }
 }
-.grid-itm img {
+.gallery-itm img {
   width: 100%;
   padding-top: .375rem;
   padding-left: .375rem;
   padding-right: .375rem;
   border-radius: .75rem
 }
-.grid-content {
+.gallery-content {
   padding: 1.5rem
 }
-.content-title {
+.gallery-content-title {
   margin-bottom: 1.5rem
 }
-.content-title a {
+.gallery-content-title a {
   margin-right: .1875rem
 }
-.content-title a:first-child {
+.gallery-content-title a:first-child {
   font-size: 1.625rem
 }
-.content-title a:last-child {
+.gallery-content-title a:last-child {
   margin-right: 0
 }
-.content-title a + a {
+.gallery-content-title a + a {
   font-size: .875rem
+}
+.gallery-filter {
+  cursor: pointer
+}
+.gallery-filter ul li {
+  display: inline-block
+}
+.gallery-filter ul {
+  margin: 20px 0
+}
+.gallery-filter li {
+  padding: 3px;
+  margin: 0 5px;
+  border-radius: 4px;
+  background-color: #cdcdcd
+}
+.gallery-filter .active {
+  background-color: #ff0
 }

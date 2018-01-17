@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+
+<head>
+
+	<meta charset="UTF-8">
+
+	<title>Секундомер</title>
+
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/main.css">
+
+	<script src="js/main.js"></script>
+</head>
+
+<body>
+	<div class="container"></div>
+
+	<div class="container2"></div>
+
+	<script>
+		(function() {
+			window.timer1 = new Timer(document.querySelector('.container'));
+			window.timer2 = new Timer(document.querySelector('.container2'));
+		}());
+	</script>
+</body>
+
+</html>

@@ -54,7 +54,7 @@ body
 	.fa-github 
 		font-size: 1.625rem
 
-.grid 
+.gallery
 	display: flex
 	flex-wrap: wrap
 	justify-content: space-between
@@ -64,7 +64,7 @@ body
 	@media ($val: $query-sm)
 		margin-top: $padding * 4
 
-.grid-itm
+.gallery-itm
 	flex: 0 1 100%
 	margin-bottom: $padding * 2
 	@extend .header
@@ -83,10 +83,10 @@ body
 		padding-right: $padding
 		border-radius: $padding * 2
 			
-.grid-content
+.gallery-content
 	padding: $padding * 4
 
-.content-title
+.gallery-content-title
 	margin-bottom: $padding * 4
 
 	a
@@ -100,3 +100,22 @@ body
 
 		+ a 
 			font-size: 0.875rem
+
+.gallery-filter
+	cursor: pointer
+
+	ul li
+		display: inline-block
+
+	ul
+		margin: 20px 0
+
+	li
+		padding: 3px
+		margin: 0 5px
+
+		border-radius: 4px
+		background-color: lighten(grey, 30%)
+
+	.active
+		background-color: yellow
