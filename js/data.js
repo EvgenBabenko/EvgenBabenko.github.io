@@ -18,12 +18,21 @@ let data = [
         tags: ['JavaScript']
     },
     {
+        title: 'Form validation',
+        image: 'img/form-validation.jpg',
+        link: 'works/form-validation/index.html',
+        linkCode: 'https://github.com/EvgenBabenko/EvgenBabenko.github.io/tree/master/works/form-validation',
+        // linkTemplate: null,
+        description: 'Form validation',
+        tags: ['JavaScript']
+    },
+    {
         title: 'Timer',
         image: 'img/timer.jpg',
         link: 'works/timer/index.html',
         linkCode: 'https://github.com/EvgenBabenko/EvgenBabenko.github.io/tree/master/works/timer',
         // linkTemplate: null,
-        description: 'Several timers could be inserted in a page. OOP style',
+        description: 'Several timers could be inserted in a page. Built on prototypes',
         tags: ['JavaScript']
     },
     {
@@ -42,7 +51,7 @@ let data = [
     //     linkCode: 'https://github.com/EvgenBabenko/EvgenBabenko.github.io/tree/master/works/java-script',
     //     // linkTemplate: null,
     //     description: 'JavaScript online courses, http://jscourse.com/',
-    //     tags: ['JavaScript']
+    //     tags: ['JavaScript', 'jQuery']
     // },
     {
         title: 'Modern corporate design',
@@ -51,7 +60,7 @@ let data = [
         linkCode: 'https://github.com/EvgenBabenko/EvgenBabenko.github.io/tree/master/works/modern-corporate-design',
         // linkTemplate: 'http://www.pcklab.com/templates/modern-corporate-design',
         description: 'HTML5, CSS3, Flexbox, SCSS, converted PSD to HTML, responsive site (7 pages), cross-browser compatibility (modern browser, IE11)',
-        tags: ['HTML/CSS', 'Flexbox', 'SCSS']
+        tags: ['HTML/CSS', 'Flexbox', 'SCSS', 'jQuery']
     },
     // {
     //     title: 'Responsive template',

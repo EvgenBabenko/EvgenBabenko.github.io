@@ -5,47 +5,45 @@
         constructor(data) {
             this.workList = data;
 
-            
             this.gallery = document.querySelector('.gallery');
             this.galleryFilter = document.querySelector('.gallery-filter');
 
-            let ff = this.getUnique(this.collectAllTags());
-            ff.unshift('All');
-            this.filterNavigation = this.createList(ff);
-            // this.filterNavigation.unshift('All');
+            let uniqueList = this.getUnique(this.collectAllTags());
+            uniqueList.unshift('All');
+            this.filterNavigation = this.createList(uniqueList);
             this.galleryFilter.appendChild(this.filterNavigation);
-            let activeDefault = this.galleryFilter.getElementsByTagName('li')[0];
-            activeDefault.className = 'active';
+
+            let activeByDefault = this.galleryFilter.getElementsByTagName('li')[0];
+            activeByDefault.className = 'active';
 
 
             this.workList.forEach(workItem => this.buildGallery(workItem));
-            // this.getUnique(this.collectAllTags());
 
 
             this.galleryFilter.addEventListener('click', (e) => {
-                console.log(e.target);
                 if (e.target.tagName !== 'LI') return;
-                this.removeAll();
+                this.removeGallery();
+
                 if (e.target.parentNode.querySelector('.active')) {
                     e.target.parentNode.querySelector('.active').classList.remove('active');
                 }
+
                 e.target.classList.add('active');
 
-                let filteredArr = this.filterD(this.workList, e.target.innerText);
+                let filteredWorkList = this.filterByField(this.workList, e.target.innerText);
                 
                 if (e.target.innerText === 'All') {
-                    filteredArr = this.workList;
-                    console.log(filteredArr);
+                    filteredWorkList = this.workList;
                 }
-                // console.log(filteredArr);
-                filteredArr.forEach(workItem => this.buildGallery(workItem));
+
+                filteredWorkList.forEach(filteredWorkItem => this.buildGallery(filteredWorkItem));
             });
 
 
         }
 
 
-        removeAll() {
+        removeGallery() {
             while (this.gallery.firstElementChild) {
                 this.gallery.firstElementChild.remove();
             }
@@ -72,7 +70,7 @@
         }
 
 
-        filterD(data, item) {
+        filterByField(data, item) {
             return data.filter(elem => {
                 return this.contain(item, elem.tags);
             });
@@ -110,22 +108,27 @@
 
         buildGallery(item) {
             const image = this.createNode('img', {src: item.image});
-            const linkImage = this.createNode('a', {href: item.link}, image);
             const linkTitle = this.createNode('a', {href: item.link}, item.title);
+            const linkDemo = this.createNode('a', {href: item.link}, 'Demo');
             const description = this.createNode('p', {}, item.description);
-
             const linkCode = this.createNode('a', {href: item.linkCode}, 'GitHub');
+            const linkContainer = this.createNode('div', {}, linkDemo, linkCode);
+            const galleryMask = this.createNode('div', {className: 'gallery-mask'}, description, linkContainer);
 
-            const galleryContentTitle = this.createNode('div', {className: 'gallery-content-title'}, linkTitle, linkCode);
-            const galleryContent = this.createNode('div', {className: 'gallery-content'}, galleryContentTitle, description);
-            const galleryItm = this.createNode('div', {className: 'gallery-itm'}, linkImage, galleryContent);
+            const tags = this.createList(item.tags, 'div', 'span');
+            const tagsImage = this.createNode('i', {className: 'fa fa-tags', ariaHidden: true});
+            tags.insertBefore(tagsImage, tags.children[0]);
+            tags.className = 'gallery-tags';
+
+            const galleryDescription = this.createNode('div', {className: 'gallery-description'}, linkTitle, tags);
+            const galleryImageWrapper = this.createNode('div', {className: 'gallery-image-wrapper'}, image, galleryMask);
+            const galleryItm = this.createNode('div', {className: 'gallery-itm'}, galleryImageWrapper, galleryDescription);
 
             this.gallery.appendChild(galleryItm);
         }
 
 
         createNode(tag, props, ...children) {
-            // debugger
             let element = document.createElement(tag);
 
             Object.keys(props).forEach(key => element[key] = props[key]);
