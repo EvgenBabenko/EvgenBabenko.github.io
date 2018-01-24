@@ -17,6 +17,15 @@ let data = [
         description: 'No frameworks, no libraries, pure JavaScript',
         tags: ['JavaScript']
     },
+    // {
+    //     title: 'Slider',
+    //     image: 'img/slider.jpg',
+    //     link: 'works/slider/index.html',
+    //     linkCode: 'https://github.com/EvgenBabenko/EvgenBabenko.github.io/tree/master/works/slider',
+    //     // linkTemplate: null,
+    //     description: 'Several sliders could be inserted in a page. Built on prototypes',
+    //     tags: ['JavaScript', 'jQuery', 'BEM']
+    // },
     {
         title: 'Form validation',
         image: 'img/form-validation.jpg',
