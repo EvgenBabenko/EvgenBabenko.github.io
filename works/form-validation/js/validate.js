@@ -6,7 +6,44 @@ window.usedEmails = ['author@mail.com', 'foo@mail.com', 'tester@mail.com'];
 (function () {
     let validationStatus = [];
     let allValidators = [];
+    let serverCheckStatus = null;
     const submitButton = document.querySelector('button[type=submit]');
+
+
+    function ajax(requeriedEmail, cb, node) {
+        const STATE_READY = 4;
+        const DOMAIN = "https://aqueous-reaches-8130.herokuapp.com/check-email/?email=";
+
+        let url = DOMAIN + encodeURIComponent(requeriedEmail);
+
+        let request = new XMLHttpRequest();
+
+        request.open('GET', url, true);
+
+        request.onreadystatechange = function() {
+            if (request.readyState === STATE_READY) {
+                cb(request.responseText, node);
+            }
+
+        };
+
+        request.send();
+    }
+
+
+    function ajaxCallback(response, node) {
+        let parsed = JSON.parse(response).used;
+
+        if (parsed) {
+            showError(getContainer(node) , 'Этот адрес уже используется SERVER');
+            submitButton.disabled = true;
+            serverCheckStatus = false;
+        } else {
+            hideError(getContainer(node));
+            submitButton.disabled = false;
+            serverCheckStatus = true;
+        }
+    }
     
 
     let data = {
@@ -23,6 +60,9 @@ window.usedEmails = ['author@mail.com', 'foo@mail.com', 'tester@mail.com'];
             {
                 validator: function (value) { return !/^([a-z0-9_\.-]+)@([a-z0-9_\.-]+)\.([a-z\.]{2,6})$/i.test(value); },
                 message: 'Проверьте написание. В адресе не должно быть ошибок.'
+            },
+            {
+                validator: function (value, node) { ajax(value, ajaxCallback, node); }
             }
         ],
 
@@ -69,7 +109,7 @@ window.usedEmails = ['author@mail.com', 'foo@mail.com', 'tester@mail.com'];
         const node = document.getElementById(id);
         const nodeWrapper = getContainer(node);
         let validationStatusIndex = validationStatus.push(true) - 1;
-    
+
         function check() {
             hideError(nodeWrapper);
     
@@ -97,7 +137,7 @@ window.usedEmails = ['author@mail.com', 'foo@mail.com', 'tester@mail.com'];
     
     
     function checkTotalStatus() {
-        return validationStatus.every(status => status === true);
+        return validationStatus.every(status => status === true) && serverCheckStatus;
     }
     
     
@@ -185,7 +225,10 @@ window.usedEmails = ['author@mail.com', 'foo@mail.com', 'tester@mail.com'];
 
         if (!isValid) {
             event.preventDefault();
-        } 
+        } else {
+            event.preventDefault();
+            console.log('submit');
+        }
 
     });
 

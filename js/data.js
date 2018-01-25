@@ -33,7 +33,7 @@ let data = [
         linkCode: 'https://github.com/EvgenBabenko/EvgenBabenko.github.io/tree/master/works/form-validation',
         // linkTemplate: null,
         description: 'Form validation',
-        tags: ['JavaScript']
+        tags: ['JavaScript', 'AJAX']
     },
     {
         title: 'Timer',
