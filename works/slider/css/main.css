@@ -1,0 +1,66 @@
+.slider__control {
+  float: left;
+}
+
+
+.button {
+  display: block;
+  width: 120px;
+  height: 30px;
+
+  border-top: 1px solid grey;
+  border-left: 1px solid grey;
+}
+
+
+.button:last-child {
+  border-bottom: 1px solid grey;
+}
+
+
+.button_active {
+  position: relative;
+
+  background-color: orange;
+}
+
+
+.button_active:before{
+  content: '';
+  position: absolute;
+  top: 15px;
+  left: 115px;
+  width: 10px;
+  height: 10px;
+  z-index: 1;
+  
+  background-color: orange;
+
+  transform: rotate(45deg);
+}
+
+
+.slider__content {
+  float: left;
+  width: 310px;
+  overflow: hidden;
+}
+
+
+.slider__wrapper {
+  position: relative;
+  height: 125px;
+  width: 100000px;
+}
+
+
+.image {
+  display: inline-block;
+  height: 100%;
+}
+
+.slider-1, .slider-2 {
+  width: 600px;
+  height: 200px;
+  margin: 0 auto;
+}

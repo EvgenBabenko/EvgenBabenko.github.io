@@ -187,9 +187,6 @@ a:hover {
   flex: 0 1 100%;
   margin-bottom: .75rem
 }
-.gallery-itm:last-child {
-  margin-bottom: 0
-}
 @media (min-width:480px) {
   .gallery-itm {
     flex: 0 1 calc(50% - .625rem);

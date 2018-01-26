@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8">
+  <title>Slider</title>
+
+  <link rel="stylesheet" type="text/css" href="css/main.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="js/slider.js"></script>
+  <script src="js/data.js"></script>
+
+</head>
+<body>
+
+  <div class="slider-1"></div>
+  <div class="slider-2"></div>
+
+  <script>
+    window.slider1 = new Slider($('.slider-1'), data);
+    window.slider2 = new Slider($('.slider-2'), data);
+  </script>
+</body>
+</html>

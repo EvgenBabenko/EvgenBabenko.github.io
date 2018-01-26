@@ -17,15 +17,15 @@ let data = [
         description: 'No frameworks, no libraries, pure JavaScript',
         tags: ['JavaScript']
     },
-    // {
-    //     title: 'Slider',
-    //     image: 'img/slider.jpg',
-    //     link: 'works/slider/index.html',
-    //     linkCode: 'https://github.com/EvgenBabenko/EvgenBabenko.github.io/tree/master/works/slider',
-    //     // linkTemplate: null,
-    //     description: 'Several sliders could be inserted in a page. Built on prototypes',
-    //     tags: ['JavaScript', 'jQuery', 'BEM']
-    // },
+    {
+        title: 'Slider',
+        image: 'img/slider.jpg',
+        link: 'works/slider/index.html',
+        linkCode: 'https://github.com/EvgenBabenko/EvgenBabenko.github.io/tree/master/works/slider',
+        // linkTemplate: null,
+        description: 'Several sliders could be inserted in a page. Built on prototypes',
+        tags: ['JavaScript', 'jQuery', 'BEM']
+    },
     {
         title: 'Form validation',
         image: 'img/form-validation.jpg',
@@ -68,7 +68,7 @@ let data = [
         link: 'works/modern-corporate-design/build/index.html',
         linkCode: 'https://github.com/EvgenBabenko/EvgenBabenko.github.io/tree/master/works/modern-corporate-design',
         // linkTemplate: 'http://www.pcklab.com/templates/modern-corporate-design',
-        description: 'HTML5, CSS3, Flexbox, SCSS, converted PSD to HTML, responsive site (7 pages), cross-browser compatibility (modern browser, IE11)',
+        description: 'Converted PSD to HTML, responsive site (7 pages), cross-browser compatibility (modern browser, IE11)',
         tags: ['HTML/CSS', 'Flexbox', 'SCSS', 'jQuery']
     },
     // {
@@ -77,7 +77,7 @@ let data = [
     //     link: 'works/responsive-PSD-template/index.html',
     //     linkCode: 'https://github.com/EvgenBabenko/EvgenBabenko.github.io/tree/master/works/responsive-PSD-template',
     //     // linkTemplate: 'http://blazrobar.com/free-psd-website-templates/responsive-psd-template/',
-    //     description: 'HTML5, CSS3, Flexbox, Sass, Mobile First, Converted PSD to HTML, Responsive single page',
+    //     description: 'Converted PSD to HTML, Responsive single page',
     //     tags: ['HTML/CSS', 'Flexbox', 'Sass', 'Mobile First']
     // },
     {
@@ -86,7 +86,7 @@ let data = [
         link: 'works/change-is-coming/index.html',
         linkCode: 'https://github.com/EvgenBabenko/EvgenBabenko.github.io/tree/master/works/change-is-coming',
         // linkTemplate: 'http://www.pcklab.com/templates/change-coming',
-        description: 'HTML5, CSS3, Flexbox, SCSS, converted PSD to HTML,responsive single page',
+        description: 'Converted PSD to HTML,responsive single page',
         tags: ['HTML/CSS', 'Flexbox', 'SCSS']
     },
     {
@@ -95,25 +95,25 @@ let data = [
         link: 'works/landing-page/index.html',
         linkCode: 'https://github.com/EvgenBabenko/EvgenBabenko.github.io/tree/master/works/landing-page',
         // linkTemplate: 'http://www.pcklab.com/templates/landing-page',
-        description: 'HTML5, CSS3, Flexbox, SCSS, converted PSD to HTML, responsive single page',
+        description: 'Converted PSD to HTML, responsive single page',
         tags: ['HTML/CSS', 'Flexbox', 'SCSS']
-    },
-    {
-        title: 'Clean Corporate Design',
-        image: 'img/clean-corporate-design.jpg',
-        link: 'works/clean-corporate-design/index.html',
-        linkCode: 'https://github.com/EvgenBabenko/EvgenBabenko.github.io/tree/master/works/clean-corporate-design',
-        // linkTemplate: 'http://www.pcklab.com/templates/clean-corporate-design',
-        description: 'HTML5, CSS3, Flexbox, converted PSD to HTML, responsive single page',
-        tags: ['HTML/CSS', 'Flexbox']
-    },
-    {
-        title: 'The Portfolio',
-        image: 'img/theportfolio.jpg',
-        link: 'works/theportfolio/index.html',
-        linkCode: 'https://github.com/EvgenBabenko/EvgenBabenko.github.io/tree/master/works/theportfolio',
-        // linkTemplate: 'http://www.pcklab.com/templates/portfolio',
-        description: 'HTML5, CSS3, converted PSD to HTML, single page',
-        tags: ['HTML/CSS']
     }
+    // {
+    //     title: 'Clean Corporate Design',
+    //     image: 'img/clean-corporate-design.jpg',
+    //     link: 'works/clean-corporate-design/index.html',
+    //     linkCode: 'https://github.com/EvgenBabenko/EvgenBabenko.github.io/tree/master/works/clean-corporate-design',
+    //     // linkTemplate: 'http://www.pcklab.com/templates/clean-corporate-design',
+    //     description: 'Converted PSD to HTML, responsive single page',
+    //     tags: ['HTML/CSS', 'Flexbox']
+    // },
+    // {
+    //     title: 'The Portfolio',
+    //     image: 'img/theportfolio.jpg',
+    //     link: 'works/theportfolio/index.html',
+    //     linkCode: 'https://github.com/EvgenBabenko/EvgenBabenko.github.io/tree/master/works/theportfolio',
+    //     // linkTemplate: 'http://www.pcklab.com/templates/portfolio',
+    //     description: 'Converted PSD to HTML, single page',
+    //     tags: ['HTML/CSS']
+    // }
 ];
