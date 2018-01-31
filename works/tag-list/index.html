@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>tagList</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/main.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="js/tagList.js"></script>
+</head>
+<body>
+
+  <div class="tag-list"></div>
+  <div class="tag-list2"></div>
+  <div class="tag-list3"></div>
+
+  <script>
+    var r = new TagList(document.querySelector('.tag-list'), ['1', '2', '3']);
+    var rdd = new TagList($('.tag-list2'), ['Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum vero quibusdam culpa eveniet accusamus ipsum maxime quo, dolore rerum velit aliquid natus consequuntur et sint est. Debitis, ipsam a reiciendis!', 'Lorem ipsum.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam, dicta!']);
+    var rf = new TagList(document.querySelector('.tag-list3'));
+  </script>
+
+</body>
+</html>

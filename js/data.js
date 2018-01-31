@@ -18,6 +18,15 @@ let data = [
         tags: ['JavaScript']
     },
     {
+        title: 'Tag list',
+        image: 'img/tag-list.jpg',
+        link: 'works/tag-list/index.html',
+        linkCode: 'https://github.com/EvgenBabenko/EvgenBabenko.github.io/tree/master/works/tag-list',
+        // linkTemplate: null,
+        description: 'Several tag list could be inserted in a page. Built on prototypes',
+        tags: ['JavaScript', 'jQuery', 'Bootstrap']
+    },
+    {
         title: 'Slider',
         image: 'img/slider.jpg',
         link: 'works/slider/index.html',
