@@ -1,0 +1,21 @@
+.list {
+  display: inline-block;
+}
+
+.list__item {
+  margin-right: 8px;
+  display: table;
+  float: left;
+}
+
+.list__content {
+  margin-right: -5px;
+  white-space: normal;
+  text-align: left;
+}
+
+.list__button {
+  display: table-cell;
+  /* position: relative; */
+}
+

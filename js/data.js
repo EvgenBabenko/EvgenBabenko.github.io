@@ -1,11 +1,20 @@
 let data = [
     {
+        title: 'Tag list',
+        image: 'img/tag-list.jpg',
+        link: 'works/tag-list-react/index.html',
+        linkCode: 'https://github.com/EvgenBabenko/EvgenBabenko.github.io/tree/master/works/tag-list-react',
+        // linkTemplate: null,
+        description: 'Several tag list could be inserted in a page. Built with React',
+        tags: ['React', 'Bootstrap']
+    },
+    {
         title: 'Find the pair',
         image: 'img/find-the-pair.jpg',
         link: 'https://EvgenBabenko.github.io/find-the-pair/index.html',
         linkCode: 'https://github.com/EvgenBabenko/find-the-pair',
         // linkTemplate: 'http://mypuzzle.org/find-the-pair',
-        description: 'No frameworks, no libraries, pure JavaScript',
+        description: 'Game "Find a pair", no frameworks, no libraries, pure JavaScript',
         tags: ['JavaScript']
     },
     {
@@ -14,7 +23,7 @@ let data = [
         link: 'https://EvgenBabenko.github.io/ad/build/index.html',
         linkCode: 'https://github.com/EvgenBabenko/ad',
         // linkTemplate: 'https://www.google.com/doubleclick/studio/externalpreview/#/bjRxbk4BTA6eGZbcSRDwEA?creativeId=41752966',
-        description: 'No frameworks, no libraries, pure JavaScript',
+        description: 'Adverting Samsung Galaxy S7, no frameworks, no libraries, pure JavaScript',
         tags: ['JavaScript']
     },
     {
@@ -41,7 +50,7 @@ let data = [
         link: 'works/form-validation/index.html',
         linkCode: 'https://github.com/EvgenBabenko/EvgenBabenko.github.io/tree/master/works/form-validation',
         // linkTemplate: null,
-        description: 'Form validation',
+        description: 'Form validation with AJAX',
         tags: ['JavaScript', 'AJAX']
     },
     {
@@ -95,7 +104,7 @@ let data = [
         link: 'works/change-is-coming/index.html',
         linkCode: 'https://github.com/EvgenBabenko/EvgenBabenko.github.io/tree/master/works/change-is-coming',
         // linkTemplate: 'http://www.pcklab.com/templates/change-coming',
-        description: 'Converted PSD to HTML,responsive single page',
+        description: 'Converted PSD to HTML, responsive single page',
         tags: ['HTML/CSS', 'Flexbox', 'SCSS']
     },
     {
