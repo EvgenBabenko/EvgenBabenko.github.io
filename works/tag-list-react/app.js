@@ -24,36 +24,50 @@ var TagList = function (_React$Component) {
 
         return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = TagList.__proto__ || Object.getPrototypeOf(TagList)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
             taglist: _this.props.taglist,
-            isEdit: false,
-            value: null
-        }, _this.handleIsEdit = function () {
-            _this.setState({
-                isEdit: !_this.state.isEdit
-            });
-        }, _this.handleDelAll = function () {
-            _this.setState({ taglist: [] });
-        }, _this.isQnique = function (tag) {
-            return _this.state.taglist.indexOf(tag) === -1;
-        }, _this.handleClick = function () {
-            if (_this.isQnique(_this.state.value) && _this.state.value) {
-                _this.state.taglist.push(_this.state.value);
+            tagListIsEdit: false,
+            newTagInputValue: null,
+            editTagIndex: null,
+            tagInputValue: null
+        }, _this.handleEditButton = function () {
+            return _this.setState({ tagListIsEdit: !_this.state.tagListIsEdit });
+        }, _this.handleRemoveAllButton = function () {
+            return _this.setState({ taglist: [] });
+        }, _this.handleAddTagButton = function () {
+            if (_this.isQnique(_this.state.newTagInputValue) && _this.state.newTagInputValue) {
+                _this.state.taglist.push(_this.state.newTagInputValue);
                 _this.setState({ taglist: _this.state.taglist });
                 _this.textInput.value = '';
             }
-        }, _this.handleChange = function (e) {
+        }, _this.tagIndex = function (tag) {
+            return _this.state.taglist.indexOf(tag);
+        }, _this.isQnique = function (tag) {
+            return _this.tagIndex(tag) === -1;
+        }, _this.handleDeleteTagButton = function (tag) {
+            _this.state.taglist.splice(_this.tagIndex(tag), 1);
+            _this.setState({ taglist: _this.state.taglist });
+        }, _this.handleEditTagButton = function (tag) {
+            _this.setState({
+                editTagIndex: _this.tagIndex(tag),
+                tagInputValue: tag
+            });
+        }, _this.handleChangeEditTagInput = function (e) {
+            return _this.setState({ tagInputValue: e.target.value });
+        }, _this.handleBlurEditTagInput = function () {
+            if (_this.isQnique(_this.state.tagInputValue)) {
+                _this.state.taglist.splice(_this.state.editTagIndex, 1, _this.state.tagInputValue);
+                _this.setState({ taglist: _this.state.taglist });
+            }
+
+            _this.setState({ editTagIndex: null });
+        }, _this.handleChangeInput = function (e) {
             var trimedValue = e.target.value.trim();
 
-            _this.setState({ value: trimedValue });
-        }, _this.handleDeleteTag = function (tag) {
-            var index = _this.state.taglist.indexOf(tag);
-
-            _this.state.taglist.splice(index, 1);
-            _this.setState({ taglist: _this.state.taglist });
-        }, _this.handleKeyUp = function (e) {
+            _this.setState({ newTagInputValue: trimedValue });
+        }, _this.handleKeyUpInput = function (e) {
             var KEY_ENTER = 'Enter';
 
             if (e.key === KEY_ENTER) {
-                _this.handleClick();
+                _this.handleAddTagButton();
             }
         }, _temp), _possibleConstructorReturn(_this, _ret);
     }
@@ -63,20 +77,25 @@ var TagList = function (_React$Component) {
         value: function render() {
             var _this2 = this;
 
-            var input = this.state.isEdit && React.createElement(Input, {
-                onAddTag: this.handleClick,
-                onChangeInput: this.handleChange,
-                onKey: this.handleKeyUp,
-                inputRef: function inputRef(input) {
-                    return _this2.textInput = input;
-                }
+            var input = this.state.tagListIsEdit && React.createElement(Input, {
+                onChangeInput: this.handleChangeInput,
+                onKeyUpInput: this.handleKeyUpInput,
+                refInput: function refInput(value) {
+                    return _this2.textInput = value;
+                },
+                onClickButton: this.handleAddTagButton
             });
-            var listElement = this.state.taglist.map(function (tag) {
+            var tag = this.state.taglist.map(function (tag, index) {
                 return React.createElement(Tag, {
+                    editTag: index === _this2.state.editTagIndex,
                     key: tag,
                     name: tag,
-                    state: _this2.state.isEdit,
-                    onClickButton: _this2.handleDeleteTag
+                    tagListIsEdit: _this2.state.tagListIsEdit,
+                    onClickButton: _this2.handleDeleteTagButton,
+                    onDoubleClickButton: _this2.handleEditTagButton,
+                    onChangeInput: _this2.handleChangeEditTagInput,
+                    onBlurButton: _this2.handleBlurEditTagInput,
+                    tagInputValue: _this2.state.tagInputValue
                 });
             });
 
@@ -91,19 +110,19 @@ var TagList = function (_React$Component) {
                         { className: "control col-md-2 col-xs-3" },
                         React.createElement(
                             "button",
-                            { className: "control__edit btn btn-primary", onClick: this.handleIsEdit },
-                            this.state.isEdit ? 'Close' : 'Edit'
+                            { onClick: this.handleEditButton, className: "control__edit btn btn-primary" },
+                            this.state.tagListIsEdit ? 'Close' : 'Edit'
                         ),
-                        React.createElement(
+                        this.state.tagListIsEdit && React.createElement(
                             "div",
-                            { className: "control__close btn btn-warning", onClick: this.handleDelAll },
+                            { onClick: this.handleRemoveAllButton, className: "control__close btn btn-warning" },
                             "X"
                         )
                     ),
                     React.createElement(
                         "div",
                         { className: "list col-md-10 col-xs-9" },
-                        listElement
+                        tag
                     )
                 ),
                 input
@@ -122,27 +141,48 @@ TagList.defaultProps = {
 function Tag(props) {
     var onClickButton = props.onClickButton,
         name = props.name,
-        state = props.state;
+        tagListIsEdit = props.tagListIsEdit,
+        onDoubleClickButton = props.onDoubleClickButton,
+        editTag = props.editTag,
+        onBlurButton = props.onBlurButton,
+        onChangeInput = props.onChangeInput,
+        tagInputValue = props.tagInputValue;
 
-    var button = state && React.createElement(
+
+    var buttonNotEdit = React.createElement("input", { value: name, className: "list__content btn btn-default", type: "button" });
+    var buttonEdit = React.createElement("input", { onDoubleClick: onDoubleClickButton.bind(this, name), value: name, className: "list__content btn btn-default", type: "button" });
+    var input = React.createElement("input", { onChange: onChangeInput, onBlur: onBlurButton, value: tagInputValue, className: "list__input form-control", type: "text" });
+
+    var button = function () {
+        if (tagListIsEdit) {
+            if (editTag) {
+                return input;
+            }
+            return buttonEdit;
+        } else {
+            return buttonNotEdit;
+        }
+    }();
+
+    var delButton = tagListIsEdit && React.createElement(
         "div",
-        { className: "list__button btn btn-warning", onClick: onClickButton.bind(this, name) },
+        { onClick: onClickButton.bind(this, name), className: "list__button btn btn-warning" },
         "X"
     );
 
     return React.createElement(
         "div",
         { className: "list__item" },
-        React.createElement("input", { className: "list__content btn btn-default", type: "button", value: name }),
-        button
+        button,
+        delButton
     );
 }
 
 function Input(props) {
-    var onAddTag = props.onAddTag,
+    var onClickButton = props.onClickButton,
         onChangeInput = props.onChangeInput,
-        onKey = props.onKey,
-        inputRef = props.inputRef;
+        onKeyUpInput = props.onKeyUpInput,
+        refInput = props.refInput;
 
 
     return React.createElement(
@@ -151,11 +191,11 @@ function Input(props) {
         React.createElement(
             "div",
             { className: "from__container col-md-6 col-xs-4" },
-            React.createElement("input", { onChange: onChangeInput, onKeyUp: onKey, ref: inputRef, className: "form__input form-control", type: "text", placeholder: "New tag" })
+            React.createElement("input", { onChange: onChangeInput, onKeyUp: onKeyUpInput, ref: refInput, className: "form__input form-control", type: "text", placeholder: "New tag" })
         ),
         React.createElement(
             "button",
-            { onClick: onAddTag, className: "form__button btn btn-primary", type: "submit" },
+            { onClick: onClickButton, className: "form__button btn btn-primary", type: "submit" },
             "Add"
         )
     );

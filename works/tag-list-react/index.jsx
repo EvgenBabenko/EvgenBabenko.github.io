@@ -1,8 +1,10 @@
 class TagList extends React.Component {
     state = {
         taglist: this.props.taglist,
-        isEdit: false,
-        value: null,
+        tagListIsEdit: false,
+        newTagInputValue: null,
+        editTagIndex: null,
+        tagInputValue: null,
     }
 
     static defaultProps = {
@@ -10,19 +12,24 @@ class TagList extends React.Component {
     };
 
     render() {
-        const input = this.state.isEdit &&
+        const input = this.state.tagListIsEdit &&
             <Input 
-                onAddTag={this.handleClick}
-                onChangeInput={this.handleChange}
-                onKey={this.handleKeyUp}
-                inputRef={input => this.textInput = input}
+                onChangeInput={this.handleChangeInput}
+                onKeyUpInput={this.handleKeyUpInput}
+                refInput={value => this.textInput = value}
+                onClickButton={this.handleAddTagButton}
             />;
-        const listElement = this.state.taglist.map(tag =>
+        const tag = this.state.taglist.map((tag, index) =>
             <Tag
+                editTag={index === this.state.editTagIndex}
                 key={tag}
                 name={tag}
-                state={this.state.isEdit}
-                onClickButton={this.handleDeleteTag}
+                tagListIsEdit={this.state.tagListIsEdit}
+                onClickButton={this.handleDeleteTagButton}
+                onDoubleClickButton={this.handleEditTagButton}
+                onChangeInput={this.handleChangeEditTagInput}
+                onBlurButton={this.handleBlurEditTagInput}
+                tagInputValue={this.state.tagInputValue}
             />
         )
 
@@ -30,13 +37,13 @@ class TagList extends React.Component {
             <div className="container well">
                 <div className="row col-md-12">
                     <div className="control col-md-2 col-xs-3">
-                        <button className='control__edit btn btn-primary' onClick={this.handleIsEdit}>
-                           {this.state.isEdit ? 'Close' : 'Edit'}
+                        <button onClick={this.handleEditButton} className='control__edit btn btn-primary'>
+                           {this.state.tagListIsEdit ? 'Close' : 'Edit'}
                         </button>
-                        <div className='control__close btn btn-warning' onClick={this.handleDelAll}>X</div>
+                        {this.state.tagListIsEdit && <div onClick={this.handleRemoveAllButton} className='control__close btn btn-warning'>X</div>}
                     </div>
                     <div className="list col-md-10 col-xs-9">
-                        {listElement}
+                        {tag}
                     </div>
                 </div>
                 {input}
@@ -44,71 +51,99 @@ class TagList extends React.Component {
         )
     }
 
-    handleIsEdit = () => {
-        this.setState({
-            isEdit: !this.state.isEdit
-        });
-    }
+    handleEditButton = () =>  this.setState({ tagListIsEdit: !this.state.tagListIsEdit });
 
-    handleDelAll = () => {
-        this.setState({ taglist: [] })
-    }
+    handleRemoveAllButton = () => this.setState({ taglist: [] });
 
-    isQnique = (tag) => this.state.taglist.indexOf(tag) === -1
-
-    handleClick = () => {
-        if (this.isQnique(this.state.value) && this.state.value) {
-            this.state.taglist.push(this.state.value)
+    handleAddTagButton = () => {
+        if (this.isQnique(this.state.newTagInputValue) && this.state.newTagInputValue) {
+            this.state.taglist.push(this.state.newTagInputValue)
             this.setState({ taglist: this.state.taglist })
             this.textInput.value = '';
         }
     }
 
-    handleChange = (e) => {
-        const trimedValue = e.target.value.trim();
+    tagIndex = (tag) => this.state.taglist.indexOf(tag);
 
-        this.setState({ value: trimedValue })
-    }
-
-    handleDeleteTag = (tag) => {
-        const index = this.state.taglist.indexOf(tag);
-
-        this.state.taglist.splice(index, 1);
+    isQnique = (tag) => this.tagIndex(tag) === -1
+    
+    handleDeleteTagButton = (tag) => {
+        this.state.taglist.splice(this.tagIndex(tag), 1);
         this.setState({ taglist: this.state.taglist })
     }
 
-    handleKeyUp = (e) => {
+    handleEditTagButton = (tag) => {
+        this.setState({
+            editTagIndex: this.tagIndex(tag),
+            tagInputValue: tag
+        });
+    }
+
+    handleChangeEditTagInput = (e) => this.setState({ tagInputValue: e.target.value });
+
+    handleBlurEditTagInput = () => {
+        if (this.isQnique(this.state.tagInputValue)) {
+            this.state.taglist.splice(this.state.editTagIndex, 1 ,this.state.tagInputValue);
+            this.setState({ taglist: this.state.taglist })
+        }
+
+        this.setState({ editTagIndex: null })
+    }
+
+    handleChangeInput = (e) => {
+        const trimedValue = e.target.value.trim();
+
+        this.setState({ newTagInputValue: trimedValue })
+    }
+
+    handleKeyUpInput = (e) => {
         const KEY_ENTER = 'Enter';
 
         if (e.key === KEY_ENTER) {
-          this.handleClick();
+          this.handleAddTagButton();
         }
     }
 }
 
 
 function Tag(props) {
-    const {onClickButton, name, state} = props;
-    const button = state && <div className='list__button btn btn-warning' onClick={onClickButton.bind(this, name)}>X</div>
+    const {onClickButton, name, tagListIsEdit, onDoubleClickButton, editTag, onBlurButton, onChangeInput, tagInputValue} = props;
 
+    const buttonNotEdit = <input value={name} className='list__content btn btn-default' type='button' />
+    const buttonEdit = <input onDoubleClick={onDoubleClickButton.bind(this, name)} value={name} className='list__content btn btn-default' type='button' />
+    const input = <input onChange={onChangeInput} onBlur={onBlurButton} value={tagInputValue} className='list__input form-control' type='text' />
+
+    const button = (function() {
+        if (tagListIsEdit) {
+            if (editTag) {
+                return input;
+            }
+            return buttonEdit;
+        } else {
+            return buttonNotEdit;
+        }
+    })()
+
+    const delButton = tagListIsEdit && <div onClick={onClickButton.bind(this, name)} className='list__button btn btn-warning'>X</div>
+    
     return (
         <div className='list__item'>
-            <input className='list__content btn btn-default' type='button' value={name} />
             {button}
+            {delButton}
         </div>
     )
 }
 
 
 function Input(props) {
-    const {onAddTag, onChangeInput, onKey, inputRef} = props;
+    const {onClickButton, onChangeInput, onKeyUpInput, refInput} = props;
 
     return (
         <div className='form col-md-8-offset-0'>
             <div className="from__container col-md-6 col-xs-4">
-                <input onChange={onChangeInput} onKeyUp={onKey} ref={inputRef} className='form__input form-control' type="text" placeholder='New tag' />
+                <input onChange={onChangeInput} onKeyUp={onKeyUpInput} ref={refInput} className='form__input form-control' type="text" placeholder='New tag' />
             </div>
-            <button onClick={onAddTag} className='form__button btn btn-primary' type='submit'>Add</button>
+            <button onClick={onClickButton} className='form__button btn btn-primary' type='submit'>Add</button>
         </div>
     )
 }
