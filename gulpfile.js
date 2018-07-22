@@ -1,109 +1,109 @@
 // 'use strict';
-var gulp 				= require('gulp'),
-		del 				= require('del'),
-		sass 				= require('gulp-sass'),
-		browserSync = require('browser-sync'),
-		cleanCSS 		= require('gulp-clean-css'),
-		imagemin 		= require('gulp-imagemin'),
-		pngquant 		= require('imagemin-pngquant'),
-		cache				= require('gulp-cache'),
-		uglify			= require('gulp-uglify'),
-		rigger 			= require('gulp-rigger'),
-		wait				= require('gulp-wait');
+var gulp = require('gulp'),
+	del = require('del'),
+	sass = require('gulp-sass'),
+	browserSync = require('browser-sync'),
+	cleanCSS = require('gulp-clean-css'),
+	imagemin = require('gulp-imagemin'),
+	pngquant = require('imagemin-pngquant'),
+	cache = require('gulp-cache'),
+	uglify = require('gulp-uglify'),
+	rigger = require('gulp-rigger'),
+	wait = require('gulp-wait');
 
 var path = {
-			build: { //put files to
-				html: '',
-				css: 'css/',
-				img: 'img/',
-				fonts: 'fonts/',
-				js: 'js/'
-			},
+	build: { //put files to
+		html: 'build/',
+		css: 'build/css/',
+		img: 'build/img/',
+		fonts: 'build/fonts/',
+		js: 'build/js/'
+	},
 
-			src: { //get files from 
-				html: 'src/*.html',
-				sass: 'src/style/main.+(scss|sass)',
-				img: [
-					'src/img/**/*.*',
-					'!src/img/icon/*.*'
-				],
-				fonts: 'src/fonts/*.*',
-				js: 'src/js/*.js'
-			},
+	src: { //get files from 
+		html: 'src/*.html',
+		sass: 'src/style/main.+(scss|sass)',
+		img: [
+			'src/img/**/*.*',
+			'!src/img/icon/*.*'
+		],
+		fonts: 'src/fonts/*.*',
+		js: 'src/js/*.js'
+	},
 
-			watch: {
-				html: [
-					'src/*.html',
-					'src/template/*.html'
-				],
-				sass: 'src/style/**/*.+(scss|sass)',
-				img: 'src/img/**/*.*',
-				fonts: 'src/fonts/*.*',
-				js: 'src/js/**/*.js'
-			}
+	watch: {
+		html: [
+			'src/*.html',
+			'src/template/*.html'
+		],
+		sass: 'src/style/**/*.+(scss|sass)',
+		img: 'src/img/**/*.*',
+		fonts: 'src/fonts/*.*',
+		js: 'src/js/**/*.js'
+	}
 };
 
 var config = {
-			server: {
-				baseDir: ''
-		},
-		tunnel: true,
-		host: 'localhost',
-		port: 9000,
-		logPrefix: "Frontend_Devil",
-		// notify: false // Отключаем уведомления
+	server: {
+		baseDir: 'build/'
+	},
+	tunnel: true,
+	host: 'localhost',
+	port: 9000,
+	logPrefix: "Frontend_Devil",
+	// notify: false // Отключаем уведомления
 };
 
-gulp.task('html', function() {
+gulp.task('html', function () {
 	gulp.src(path.src.html)
-	.pipe(rigger())
-	.pipe(gulp.dest(path.build.html))
-	.pipe(browserSync.reload({stream: true}));
+		.pipe(rigger())
+		.pipe(gulp.dest(path.build.html))
+		.pipe(browserSync.reload({ stream: true }));
 });
 
-gulp.task('sass', function() {
+gulp.task('sass', function () {
 	gulp.src(path.src.sass)
-	.pipe(wait())
-	.pipe(sass(
-		// {
-		// 	outputStyle: 'nested'
-		// }
-	))
-	.pipe(cleanCSS(
-		{
-			format: 'beautify',
-			level: '2'
-	}
-	))
-	.pipe(gulp.dest(path.build.css))
-	.pipe(browserSync.reload({stream: true}));
+		.pipe(wait())
+		.pipe(sass(
+			// {
+			// 	outputStyle: 'nested'
+			// }
+		))
+		.pipe(cleanCSS(
+			{
+				format: 'beautify',
+				level: '2'
+			}
+		))
+		.pipe(gulp.dest(path.build.css))
+		.pipe(browserSync.reload({ stream: true }));
 });
 
-gulp.task('img', function() {
+gulp.task('img', function () {
 	gulp.src(path.src.img)
-	.pipe(cache(imagemin({
-		interlaced: true,
-		progressive: true,
-		svgoPlugins: [{removeViewBox: false}],
-		use: [pngquant()]
-	})))
-	.pipe(gulp.dest(path.build.img))
-	.pipe(browserSync.reload({stream: true}));
+		.pipe(cache(imagemin({
+			interlaced: true,
+			progressive: true,
+			svgoPlugins: [{ removeViewBox: false }],
+			use: [pngquant()]
+		})))
+		.pipe(gulp.dest(path.build.img))
+		.pipe(browserSync.reload({ stream: true }));
 });
 
-gulp.task('js', function() {
+gulp.task('js', function () {
 	gulp.src(path.src.js)
-	// .pipe(rigger())
-	// .pipe(uglify())
-	.pipe(gulp.dest(path.build.js))
-	.pipe(browserSync.reload({stream: true}));
+		// .pipe(rigger())
+		// .pipe(uglify())
+		.pipe(gulp.dest(path.build.js))
+		.pipe(browserSync.reload({ stream: true }));
 });
 
 gulp.task('webserver', function () {
-    browserSync(config);
+	browserSync(config);
 });
 
-gulp.task('watch', function() {
+gulp.task('watch', function () {
 	gulp.watch(path.watch.html, ['html']);
 	gulp.watch(path.watch.sass, ['sass']);
 	gulp.watch(path.watch.img, ['img']);
@@ -115,7 +115,7 @@ gulp.task('watch', function() {
 // 	del.sync('build');
 // });
 
-gulp.task('clear', function() {
+gulp.task('clear', function () {
 	cache.clearAll();
 });
 

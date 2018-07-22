@@ -1,5 +1,59 @@
 let data = [
     {
+        title: 'Task manager API',
+        image: 'img/mock.jpg',
+        link: 'https://github.com/EvgenBabenko/incode-app-api',
+        linkCode: 'https://github.com/EvgenBabenko/incode-app-api',
+        // linkTemplate: null,
+        description: 'API for task manager',
+        tags: ['Node.js', 'Express.js', 'MongoDB']
+    },
+    {
+        title: 'Task manager',
+        image: 'img/mock.jpg',
+        link: 'https://github.com/EvgenBabenko/incode-app',
+        linkCode: 'https://github.com/EvgenBabenko/incode-app',
+        // linkTemplate: null,
+        description: 'Task manager with roles',
+        tags: ['React', 'Redux', 'Material UI']
+    },
+    {
+        title: 'Info list',
+        image: 'img/react-info-list.jpg',
+        link: 'https://evgenbabenko.github.io/react-info-list/',
+        linkCode: 'https://github.com/EvgenBabenko/react-info-list',
+        // linkTemplate: null,
+        description: 'Simple info list.',
+        tags: ['React', 'Redux', 'Semantic UI']
+    },
+    {
+        title: 'Web search',
+        image: 'img/mock.jpg',
+        link: 'https://github.com/EvgenBabenko/ts-web-search',
+        linkCode: 'https://github.com/EvgenBabenko/ts-web-search',
+        // linkTemplate: null,
+        description: 'Simple and clearly web search based on Google search',
+        tags: ['TypeScript']
+    },
+    {
+        title: 'Nearby place',
+        image: 'img/mock.jpg',
+        link: 'https://github.com/EvgenBabenko/ts-nearby-place',
+        linkCode: 'https://github.com/EvgenBabenko/ts-nearby-place',
+        // linkTemplate: null,
+        description: 'Get nearby places with input users lat/lng',
+        tags: ['TypeScript', 'Google API']
+    },
+    {
+        title: 'Trello',
+        image: 'img/mock.jpg',
+        link: 'https://github.com/EvgenBabenko/react-trello',
+        linkCode: 'https://github.com/EvgenBabenko/react-trello',
+        // linkTemplate: null,
+        description: 'Simple trello clone',
+        tags: ['React', 'Bootstrap']
+    },
+    {
         title: 'Tag list',
         image: 'img/tag-list.jpg',
         link: 'works/tag-list-react/index.html',
@@ -42,7 +96,7 @@ let data = [
         linkCode: 'https://github.com/EvgenBabenko/EvgenBabenko.github.io/tree/master/works/slider',
         // linkTemplate: null,
         description: 'Several sliders could be inserted in a page. Built on prototypes',
-        tags: ['JavaScript', 'jQuery', 'BEM']
+        tags: ['JavaScript', 'jQuery']
     },
     {
         title: 'Form validation',
