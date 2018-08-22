@@ -111,9 +111,9 @@ gulp.task('watch', function () {
 	gulp.watch(path.watch.js, ['js']);
 });
 
-// gulp.task('clean', function() {
-// 	del.sync('build');
-// });
+gulp.task('clean', function() {
+	del.sync('build');
+});
 
 gulp.task('clear', function () {
 	cache.clearAll();

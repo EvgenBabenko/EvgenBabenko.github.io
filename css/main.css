@@ -127,7 +127,7 @@ table {
 body * {
   font-family: 'PT Sans',sans-serif;
   box-sizing: border-box;
-  transition: all .3s ease-in-out
+  transition: .3s ease-in-out
 }
 a {
   text-decoration: none;
@@ -224,23 +224,29 @@ a:hover {
 .gallery-content-title a + a {
   font-size: .875rem
 }
-.gallery-filter {
-  cursor: pointer
+.gallery-tags {
+  cursor: pointer;
+  margin-top: 5px;
+  margin-bottom: 5px
 }
-.gallery-filter ul li {
+.gallery-tags ul li {
   display: inline-block
 }
-.gallery-filter ul {
+.gallery-tags ul {
   margin: 20px 0
 }
-.gallery-filter li {
+.gallery-tags li {
   padding: 3px;
   margin: 5px;
   border-radius: 4px;
   background-color: #cdcdcd
 }
-.gallery-filter .active {
+.gallery-tags .active {
   background-color: #ff0
+}
+.gallery-description {
+  padding-right: .375rem;
+  padding-left: .375rem
 }
 .gallery-description a {
   font-size: 1.5rem
@@ -276,10 +282,6 @@ a:hover {
   margin: 5px;
   padding: 5px;
   border: 1px solid #000
-}
-.gallery-tags {
-  margin-top: 5px;
-  margin-bottom: 5px
 }
 .gallery-tags span {
   margin-right: 5px;
