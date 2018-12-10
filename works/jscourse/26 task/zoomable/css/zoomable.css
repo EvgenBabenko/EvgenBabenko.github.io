@@ -1,0 +1,43 @@
+.description p {
+  font-size: 1.25em;
+  line-height: 150%;
+  margin-bottom: 1em;
+}
+
+.zoomable {
+  position: fixed;
+  background-color: rgba(100, 100, 100, 0.85);
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.blur {
+
+}
+
+.zoomable__wrapper {
+  /* position: relative; */
+  top: 0;
+  margin: auto;
+  left: 0;
+  /* width: 200px; */
+  /* height: 300px; */
+  right: 0;
+  bottom: 0;
+  position: fixed;
+}
+
+.zoomable__close {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.zoomable__zoomed {
+  /* width: 200px; */
+  /* height: 300px; */
+  position: absolute;
+  /* border: 5px solid black; */
+}

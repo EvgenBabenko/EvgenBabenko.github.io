@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Context menu</title>
+
+    <link rel="stylesheet" href="css/main.css">
+
+    <script src="js/contextMenu.js"></script>
+</head>
+
+<body>
+    <div class="menu-1">
+        <p>Context menu is HERE</p>
+    </div>
+    <p>But here is not</p>
+
+    <div class="menu-2">
+        <p>Context menu is HERE too</p>
+    </div>
+
+    <script>
+        (function () {
+            const menu1 = [{
+                title: 'File',
+                action: function () {
+                    console.log('open file')
+                }
+            }, {
+                title: 'Edit',
+                action: function () {
+                    console.log('edit content')
+                }
+            }, {
+                title: 'More stuff',
+                submenu: [{
+                    title: 'Send by email',
+                    action: function () {
+                        console.log('emailed')
+                    }
+                }, {
+                    title: 'Send via skype',
+                    action: function () {
+                        console.log('skyped')
+                    }
+                }, {
+                    title: 'GET stuff',
+                    submenu: [{
+                        title: 'Send via skype2',
+                        action: function () {
+                            console.log('skyped2')
+                        }
+                    }, {
+                        title: 'GET more stuff',
+                        submenu: [{
+                            title: 'Send via skype3',
+                            action: function () {
+                                console.log('skyped3')
+                            }
+                        }]
+                    }]
+                }]
+            }];
+
+            const menu2 = [{
+                title: 'Open',
+                action: function () {
+                    console.log('open file')
+                }
+            }, {
+                title: 'Edit',
+                action: function () {
+                    console.log('edit content')
+                }
+            }, {
+                title: 'More stuff',
+                submenu: [{
+                    title: 'Send by email',
+                    action: function () {
+                        console.log('emailed')
+                    }
+                }, {
+                    title: 'Send via skype',
+                    action: function () {
+                        console.log('skyped')
+                    }
+                }]
+            }];
+
+            window.cm1 = new ContextMenu(menu1, document.querySelector('.menu-1'));
+            window.cm2 = new ContextMenu(menu2, document.querySelector('.menu-2'));
+        }())
+    </script>
+</body>
+
+</html>

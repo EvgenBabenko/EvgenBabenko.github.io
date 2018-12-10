@@ -1,0 +1,50 @@
+ul {
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+.menu {
+    display: inline-block;
+}
+
+.context-menu {
+    display: none;
+    position: absolute;
+    border: 1px solid black;
+    background-color: white;
+}
+
+.context-menu ul {
+    display: none;
+}
+
+.context-menu.on {
+    display: block;
+}
+
+.context-menu li ul {
+    position: absolute;
+    top: 0px;
+    left: 100%;
+}
+
+/* Solution with CSS rules */
+
+/* .context-menu li:hover > ul {
+    display: block;
+    background: #0A3CC1;
+} */
+
+.context-menu li {
+	background: #75C1D4;
+    color: #FBF7F7;
+    position: relative;
+    padding: 5px 15px;
+    cursor: default;
+    width: 10rem;
+}
+
+.context-menu li:hover {
+	background: #0A3CC1;
+}
